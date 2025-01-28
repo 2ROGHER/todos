@@ -1,0 +1,17 @@
+################################################################
+# Este archivo debe orquestar los servicios 
+# necesarios para tu aplicación 
+# (por ejemplo, el servicio frontend). Un ejemplo básico:
+################################################################
+
+version: '0.1'
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: DockerFile
+    ports:
+      - "3000:80" # Mapping the port 80 of the container to the port 3000 en your machine
+    volumes:
+      - ./build:/usr/share/nginx/html # Optional if you want to live development
+    container_name: frontend-react
