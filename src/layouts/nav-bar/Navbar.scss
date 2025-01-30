@@ -1,0 +1,28 @@
+.nav-bar {
+    // background: rgb(255, 70, 37);
+    position: relative !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 96px;
+
+    padding: 16px 32px;
+}
+
+.nav-bar__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-bar-menu__list {
+    display: flex;
+    gap: 16px;
+}
+
+.nav-bar-menu__item {
+    list-style: none;
+    padding: 4px 8px;
+}
+
+// TODO: Here goes all styles to @media queries
