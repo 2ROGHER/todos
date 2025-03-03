@@ -1,7 +1,7 @@
 import React from "react";
 import { NavBar } from "../../layouts/nav-bar/Navbar";
 import { SearchBarContainer } from "../../components/container/search/SearchBarContainer";
-import { CreateTodoFormContainer } from "../../forms/container/create-todo/CreateTodoContainer";
+import { CreateTaskFormContainer } from "../../forms/container/create-todo/CreateTaskFormContainer";
 import { TaskLists } from "../../components/container/task-list/TaskList";
 
 export const HomePage = () => {
@@ -14,7 +14,7 @@ export const HomePage = () => {
           {/* This section is used to render the search bar component. */}
           <SearchBarContainer />
 
-          <CreateTodoFormContainer />
+          <CreateTaskFormContainer />
 
           <TaskLists />
         </main>

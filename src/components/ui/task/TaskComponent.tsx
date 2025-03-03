@@ -19,6 +19,7 @@ export const TaskComponent = ({
   onCompleted: () => void;
   onUpdate: (task: Task) => void;
 }): JSX.Element => {
+  // Use here the useInput custom hook to dooing
   const [isUdpdate, setIsUpdate] = useState({
     title: false,
     content: false,
@@ -91,7 +92,19 @@ export const TaskComponent = ({
       <div className="task__actions">
         <button
           className="task__button__delete"
-          onClick={() => onUpdate(new Task(id, updatedTerm.title, updatedTerm.content, completed))}
+          onClick={() =>
+            onUpdate(
+              new Task(
+                id,
+                updatedTerm.title,
+                updatedTerm.content,
+                completed,
+                false,
+                false,
+                false
+              )
+            )
+          }
         >
           save changes
         </button>

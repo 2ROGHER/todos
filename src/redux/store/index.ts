@@ -5,6 +5,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "../reducers";
 
+//
 // Configuration the store to able Redux Devtools on the Browser.
 
 // This works successfully with Redux@4.x.x
@@ -13,6 +14,7 @@ import rootReducer from "../reducers";
 //     (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
 //   compose;
 
+//****** This method to crate a root store has been deprecated ** */ */
 // const store = createStore(
 //   rootReducer,
 //   composeEnhancers(applyMiddleware(thunk))
@@ -24,4 +26,8 @@ const store = configureStore({
   reducer: rootReducer,
   devTools: process.env.NODE_ENV !== "production",
 });
+
+console.log('store', store.getState());
+
 export default store;
+

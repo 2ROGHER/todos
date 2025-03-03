@@ -1,7 +1,7 @@
 import React, { JSX, useEffect } from "react";
 import "./Search.scss";
 
-export const SearchBar = ({
+export const SearchComponent = ({
   term,
   onSetTerm,
   onSearch,

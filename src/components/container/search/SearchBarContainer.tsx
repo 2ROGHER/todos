@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { SearchBar } from "../../ui/search-bar/Search";
+import { SearchComponent } from "../../ui/search-bar/SearchComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { IAction } from "../../../models/interfaces/action.interface";
 import Task from "../../../models/domain/task.model";
-import {
-  filterTasksAction,
-  searchTaskByName,
-  setTermAction,
-} from "../../../redux/actions";
+
+
 
 export const SearchBarContainer = () => {
   const [term, setTerm] = useState("");
@@ -26,11 +23,11 @@ export const SearchBarContainer = () => {
   const handleSearchTodo = () => {};
 
   useEffect(() => {
-    dispatch(setTermAction(term));
-    dispatch(filterTasksAction());
+    // dispatch(setTermAction(term));
+    // dispatch(filterTasksAction());
   }, [term]);
 
   return (
-    <SearchBar term={term} onSetTerm={setTerm} onSearch={handleSearchTodo} />
+    <SearchComponent term={term} onSetTerm={setTerm} onSearch={handleSearchTodo} />
   );
 };

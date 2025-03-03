@@ -8,11 +8,26 @@ class Task {
   private _content: string;
   private _completed: boolean;
 
-  constructor(id: string, title: string, content: string, completed: boolean) {
+  private _favorites: boolean;
+  private _deleted: boolean;
+  private _archived: boolean;
+
+  constructor(
+    id: string,
+    title: string,
+    content: string,
+    completed: boolean,
+    favorites: boolean,
+    deleted: boolean,
+    archived: boolean
+  ) {
     this._id = id;
     this._title = title;
     this._content = content;
     this._completed = completed;
+    this._favorites = favorites;
+    this._deleted = deleted;
+    this._archived = archived;
   }
 
   get id(): string {
@@ -44,6 +59,30 @@ class Task {
 
   set completed(value: boolean) {
     this._completed = value;
+  }
+
+  get favorites(): boolean {
+    return this._favorites;
+  }
+
+  set favorites(value: boolean) {
+    this._favorites = value;
+  }
+
+  get deleted(): boolean {
+    return this._deleted;
+  }
+
+  set deleted(value: boolean) {
+    this._deleted = value;
+  }
+
+  get archived(): boolean {
+    return this._archived;
+  }
+
+  set archived(value: boolean) {
+    this._archived = value;
   }
 }
 

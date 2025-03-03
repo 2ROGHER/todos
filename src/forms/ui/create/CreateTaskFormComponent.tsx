@@ -1,34 +1,29 @@
-import React, { JSX } from "react";
-import { useInput } from "../../../hooks/useInput.hook";
+import { title } from "process";
+import React, { JSX, useState } from "react";
 
 /**
  * This component is responsible to render the create New Todo From component.
  */
 
 // React.Dispatch<React.SetStateAction<{ title: string; content: string }>>
-export const NewTodoForm = ({
-  onSubmit,
+export const CreateTaskFormComponent = ({
+  i,
   onCreate,
-  onSetFields,
-  fields,
+  onSetV,
 }: {
-  onSubmit: (e: any) => void;
-  onCreate: () => void;
-  onSetFields: any;
-  fields: { title: string; content: string };
+  i: { title: string; content: string };
+  onCreate: (e: any) => void;
+  onSetV: (k: string, v: any) => void; // We need to have careful defining the functions.
 }): JSX.Element => {
-
-  
   return (
-    <form action="#" className="form" onSubmit={(e) => onSubmit(e)}>
+    <form action="#" className="form" onSubmit={(e) => onCreate(e)}>
       <div className="form-title">
         <input
           className="form-title__input"
           type="text"
           name="title"
-          onChange={(e) =>
-            onSetFields({ ...fields, [e.target.name]: e.target.value })
-          }
+          value={i.title} // This is useful to control the input fields.
+          onChange={(e) => onSetV(e.target.name, e.target.value)}
           placeholder="Title"
         />
       </div>
@@ -38,9 +33,8 @@ export const NewTodoForm = ({
           className="form-content_input"
           type="text"
           name="content"
-          onChange={(e) =>
-            onSetFields({ ...fields, [e.target.name]: e.target.value })
-          }
+          value={i.content}
+          onChange={(e) => onSetV(e.target.name, e.target.value)}
           placeholder="Add task content"
         />
       </div>
