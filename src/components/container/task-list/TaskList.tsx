@@ -14,6 +14,7 @@ import { IState } from "../../../models/interfaces/state.interface";
 export const TaskLists = (): JSX.Element => {
   const dispatch = useDispatch<Dispatch<IAction<Task | string>>>();
 
+  // We need to get all [Tasks] when the component is rendered.
   const { todos } = useSelector((state: any) => state);
 
   useEffect(() => {
@@ -30,7 +31,6 @@ export const TaskLists = (): JSX.Element => {
    * @param id Task ID
    */
   const handleUpdateTask = (task: Task) => {
-    console.log(task);
     dispatch(udpateTaskAction(task));
   };
 

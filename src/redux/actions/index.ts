@@ -6,12 +6,16 @@
 import { Action } from "redux";
 import Task from "../../models/domain/task.model";
 import { IAction } from "../../models/interfaces/action.interface";
-import { 
-  CREATE_TASK,
-  UPDATE_TASK,
-
-} from '../action-types/task';
-import { REMOVE_TASK, GET_ALL_TASKS} from "../action-types/tasks";
+import { CREATE_TASK, UPDATE_TASK } from "../action-types/task";
+import { REMOVE_TASK, GET_ALL_TASKS } from "../action-types/tasks";
+import {
+  FILTER_TASKS_BY_STATUS,
+  SEARCH_TASK,
+  SET_SEARCH_TERM,
+  SET_SORT_VALUE_FILTER,
+  SET_TASK_STATUS_FILTER,
+  SORT_TASKS_BY_VALUE,
+} from "../action-types/filters";
 /**
  * This function is responsible to create a new action creator to create a new  task.
  * @param task
@@ -37,15 +41,7 @@ export const udpateTaskAction = (task: Task): IAction<Task> => ({
   payload: task,
 });
 
-// export const getTaskByIdAction = (id: string): IAction<string> => ({
-//   type: GET_TASK_BY_ID,
-//   payload: id,
-// });
 
-// export const searchTaskByName = (name: string): IAction<string> => ({
-//   type: SEARCH_TASK_BY_NAME,
-//   payload: name,
-// });
 
 /**
  * This action creator is used to retrieve all task by the tasks list.
@@ -55,11 +51,32 @@ export const getAllTasksAction = () => ({
   type: GET_ALL_TASKS,
 });
 
-// export const setTermAction = (term: string): IAction<string> => ({
-//   type: SET_SEARCH_TERM,
-//   payload: term,
-// });
 
-// export const filterTasksAction = (): IAction<string> => ({
-//   type: FILTER_TASKS,
-// });
+
+export const setSearchTermAction = (t: string): IAction<string> => ({
+  type: SET_SEARCH_TERM,
+  payload: t,
+});
+
+export const searchTaskByTermValueAction = (t: string) => ({
+  type: SEARCH_TASK,
+  payload: t,
+});
+
+export const setTaskStatusActions = (v: string) => ({
+  type: SET_TASK_STATUS_FILTER,
+  payload: v,
+});
+
+export const filterTasksByStatusActio = () => ({
+  type: FILTER_TASKS_BY_STATUS,
+});
+
+export const setSortValueAction = (v: string) => ({
+  type: SET_SORT_VALUE_FILTER,
+  payload: v,
+});
+
+export const sortTasksByValueAction = () => ({
+  type: SORT_TASKS_BY_VALUE,
+});

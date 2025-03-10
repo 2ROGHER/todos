@@ -1,33 +1,29 @@
-import React, { useEffect, useState } from "react";
 import { SearchComponent } from "../../ui/search-bar/SearchComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { IAction } from "../../../models/interfaces/action.interface";
 import Task from "../../../models/domain/task.model";
 
-
+import { useSearch } from "../../../hooks/useSearch.hook";
 
 export const SearchBarContainer = () => {
-  const [term, setTerm] = useState("");
+  //TODO: use [useInput] custom Hook instaend.
+  // const [s, onChangeI] = useSearch<Record<string, any>>({ search: "" });
+  const [s, setS] = useSearch({ search: "" });
 
   const dispatch = useDispatch<Dispatch<IAction<string | Task>>>();
-  const value  = useSelector((state: any) => state.todos.term);
-  console.log(value);
+  const state = useSelector((state: any) => state);
 
-  /**
-   * This method is responsible for search any task in the state and show the tasks
-   * in the client side
-   * @returns {void}
-   */
-
-  const handleSearchTodo = () => {};
-
-  useEffect(() => {
-    // dispatch(setTermAction(term));
-    // dispatch(filterTasksAction());
-  }, [term]);
 
   return (
-    <SearchComponent term={term} onSetTerm={setTerm} onSearch={handleSearchTodo} />
+    // <SearchComponent
+    //   t={s}
+    //   onSearch={(k, v) => onChangeI((prv) => ({ ...prv, [k]: v }))}
+    // />
+    <SearchComponent
+      t={s}
+      // onSearch={(k: keyof typeof s, v: (typeof s)[typeof k]) => setS(k, v)}
+      onSearch={setS}
+    />
   );
 };

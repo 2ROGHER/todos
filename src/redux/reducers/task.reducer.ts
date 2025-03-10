@@ -3,22 +3,26 @@
 import { v4 } from "uuid";
 import Task from "../../models/domain/task.model";
 import {
-  ADD_FAVORITES,
-  ARCHIVED_TASK,
   CREATE_TASK,
-  SET_STATUS,
+  SET_SORT_VALUE,
+  SET_TASK_STATUS,
   UPDATE_TASK,
 } from "../action-types/task";
 
+import {
+  FILTER_TASKS_BY_STATUS,
+  SORT_TASKS_BY_VALUE,
+} from "../action-types/filters";
 
-const initialState: any = {}
+import { SEARCH_TASK } from "../action-types/filters";
+
+const initialState: any = {};
 
 export const taskReducer = (
   state = initialState,
-  { type, payload }: { type: string; payload: any  }
+  { type, payload }: { type: string; payload: any }
 ): Task | any => {
   switch (type) {
-    
     case CREATE_TASK:
       // This reducer method return a new Task instance object created
       return new Task(
@@ -30,37 +34,39 @@ export const taskReducer = (
         payload.deleted,
         payload.archived
       );
+      // return { ...state, id: v4(), ...payload } as Task;
 
     case UPDATE_TASK:
-      return new Task(
-        payload.id,
-        payload.title,
-        payload.content,
-        payload.completed,
-        payload.favorites,
-        payload.deleted,
-        payload.archived
-      );
+      // return new Task(
+      //   payload.id,
+      //   payload.title,
+      //   payload.content,
+      //   payload.completed,
+      //   payload.favorites,
+      //   payload.deleted,
+      //   payload.archived
+      // );
+      return { ...state, ...payload } as Task;
 
-    case ADD_FAVORITES:
-      return {
-        ...state,
-        favorites: !payload,
-      } as Task;
+    case SEARCH_TASK:
+    console.log(state, payload)
+      return (
+        state.title.toLowerCase().includes(payload) ||
+        state.content.toLowerCase().includes(payload)
+      ); // this return true o false
 
-    case ARCHIVED_TASK:
-      return {
-        ...state,
-        archived: !payload,
-      };
+    case SET_TASK_STATUS:
+      return { ...state, status: payload } as Task;
 
-    
-    
-    case SET_STATUS: 
-        return {
-            ...state,
-            completed: !payload
-        }
+    case FILTER_TASKS_BY_STATUS:
+      return state.status == payload;
+
+    case SET_SORT_VALUE:
+      return { ...state, sortBy: payload } as Task;
+
+    case SORT_TASKS_BY_VALUE:
+      return state.sortBy == payload;
+
     default:
       return state;
   }

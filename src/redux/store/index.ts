@@ -4,6 +4,7 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "../reducers";
+import { useLocalStorage } from "../../hooks/useLocalStorage.hook";
 
 //
 // Configuration the store to able Redux Devtools on the Browser.
@@ -26,6 +27,8 @@ const store = configureStore({
   reducer: rootReducer,
   devTools: process.env.NODE_ENV !== "production",
 });
+
+// const local = useLocalStorage('')
 
 console.log('store', store.getState());
 

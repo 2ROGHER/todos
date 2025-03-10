@@ -1,14 +1,13 @@
-import React, { JSX, useEffect } from "react";
+import React, { JSX } from "react";
 import "./Search.scss";
 
 export const SearchComponent = ({
-  term,
-  onSetTerm,
+  t,
   onSearch,
 }: {
-  term: string;
-  onSetTerm: (e: any) => void;
-  onSearch: (e: any) => void;
+  t: { search: string };
+  onSearch: (k: string, v: string) => void;
+  // onSearch: <K extends keyof typeof t>(k: K, v: (typeof t)[K]) => void;
 }): JSX.Element => {
   // Need to add a local variable to store the value here.
   // const todos = useSelector((state: any) => state.todos);
@@ -20,17 +19,19 @@ export const SearchComponent = ({
           <input
             type="text"
             className="search-bar__input"
-            onChange={(e) => onSetTerm(e.target.value)}
+            value={t?.search}
+            name="search"
+            onChange={(e) => onSearch(e.target.name, e.target.value)}
             placeholder="Search for a task..."
           />
         </div>
         <div className="search-bar__button">
-          <button onClick={onSearch}>search</button>
+          <button onClick={() => onSearch("search", t.search)}>search</button>
         </div>
       </div>
 
       <code>
-        <pre>{JSON.stringify(term, null, 2)}</pre>
+        <pre>{JSON.stringify(t, null, 2)}</pre>
       </code>
     </>
   );
