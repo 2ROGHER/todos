@@ -1,28 +1,45 @@
+@import "../../index.scss";
+
 .nav-bar {
     // background: rgb(255, 70, 37);
-    position: relative !important;
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    height: 100%;
+    padding: $base-padding-medium $base-padding-small;
+}
+.menu-list ul, .settings-menu ul {
+    position: inherit;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    height: 96px;
-
-    padding: 16px 32px;
+    gap: 4px;
+    padding: 8px 0;
+    padding-inline-start: 0;
 }
 
-.nav-bar__logo {
+.menu-list ul li, .settings-menu ul li {
+    list-style-type: none;
+}
+
+.menu-list ul li span, .settings-menu ul li span {
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
+    padding: 12px;
 }
 
-.nav-bar-menu__list {
-    display: flex;
-    gap: 16px;
+.menu-list ul li:hover, .settings-menu ul li:hover {
+    background: #111111;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.btn__search, .btn__new, .btn-settings, .btn-menu {
+    background: none;
+    outline:  none;
+    border: none;
 }
 
-.nav-bar-menu__item {
-    list-style: none;
-    padding: 4px 8px;
-}
 
 // TODO: Here goes all styles to @media queries

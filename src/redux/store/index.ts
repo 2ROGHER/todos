@@ -3,7 +3,7 @@
  */
 
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "../reducers";
+import rootReducer from "../reducers/root";
 import { useLocalStorage } from "../../hooks/useLocalStorage.hook";
 
 //
@@ -30,7 +30,7 @@ const store = configureStore({
 
 // const local = useLocalStorage('')
 
-console.log('store', store.getState());
+console.log('THE COMPLETE STORE IS: ', store.getState());
 
 export default store;
 

@@ -1,0 +1,26 @@
+@import "../../index.scss";
+
+.App {
+    position: relative;
+}
+
+.side-bar {
+    position: fixed;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.main {
+    position: relative;
+    margin-left: 120px !important;
+    // background: red;
+    // padding: 128px;
+    
+    
+}
+
+.main-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}

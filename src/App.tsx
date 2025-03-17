@@ -16,6 +16,7 @@ import { NotFoundPage } from "./pages/404/NotFoundPage";
 import { TaskDetailsComponent } from "./pages/details/TaskDetails";
 import LoginPage from "./pages/login/LoginPage";
 import SignUpPage from "./pages/signup/SignUpPage";
+
 function App(): JSX.Element {
   // If we need to refactor this structure we can use the useRoutes hoock
   // let routes = useRoutes([
@@ -40,7 +41,7 @@ function App(): JSX.Element {
             <Route path="details" element={<TaskDetailsComponent />} />
           </Route>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/register" element={<SignUpPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

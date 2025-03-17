@@ -40,7 +40,7 @@ export const useInput = <T extends Record<string, any>>(e: T): any => {
       ...prv,
       [k]: v,
     }));
-  }, []); // Here it's does'nt depends from [i] state, cause it uses the [prv] early state.
+  }, []); // Here it's does'nt depends from [i] state, cause it uses the [prv] early state to change if any changes in the state [i] ocurs.
 
   const reset = () => setI(e);
 

@@ -68,8 +68,16 @@ module.exports = {
                 test: /\.s[ac]ss$/i,
                 use: [
                     'style-loader', // Injects styles into the DOM
-                    'css-loader',   // Turns CSS into JS modules
-                    'sass-loader',  // Compiles Sass to CSS
+                    //'css-loader',   // Turns CSS into JS modules
+                    //'sass-loader',  // Compiles Sass to CSS
+                    {
+                        loader: 'css-loader', // Turns CSS into JS modules
+                        options: { sourceMap: true }, // Enable CSS source maps
+                    },
+                    {
+                        loader: 'sass-loader', // Compiles Sass to CSS
+                        options: { sourceMap: true }, // Enable Sass source maps
+                    },
                 ],
             },
 
@@ -113,4 +121,15 @@ module.exports = {
     plugins: [
         // Example: Add plugins like HtmlWebpackPlugin here if needed
     ],
+
+    /**
+    * Dev Server
+    * Configuration for Webpack's development server with live reload.
+    */
+    devServer: {
+        static: path.resolve(__dirname, 'build'),
+        compress: true,
+        port: 8080,
+        hot: true,
+    },
 };

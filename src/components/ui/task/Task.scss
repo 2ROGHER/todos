@@ -1,11 +1,62 @@
+@import "../../../index.scss";
+
 .task {
-    background: blue;
     position: relative;
     margin: 8px 0;
     width: 312px;
-    padding: 8px;
-    
+    background: $base-color-app;
+    border: 1px solid #1f1f1f;
+    border-radius: 4px;
+    padding: 16px;
+}
+.task__header {
+    font-size: 24px;
+    // font-family: $base-font-family-manrope;
+}
+
+.task__body {
+    font-size: 16px;
+}
+
+.task__created {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.task-footer { 
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+.task__actions {
+    display: flex;
+    flex-wrap: wrap;
+}
+.btn-delete, .btn-favorites, .btn-pin {
+    outline: none;
+    border: none;
+    background: $base-color-app;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    margin: 0px 2px;
 
 }
-.task-header {
+
+.btn-delete:hover, .btn-favorites:hover, .btn-pin:hover {
+    background: #111;
+    border-radius: 4px;
 }
+
+.completed { 
+    background: #111;
+    text-decoration:line-through;
+}
+
+
+
+/* TODO ('implemente media queries here to show in other screens by now, we display the [tasks] in 
+        four columns.
+*/

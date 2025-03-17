@@ -3,5 +3,10 @@
  */
 
 import React, { JSX } from "react";
+import "./Logo.scss";
 
-export const Logo = (): JSX.Element => (<div className="logo"> SVG LOGO</div>);
+export const Logo = (): JSX.Element => (
+  <div className="logo">
+    <span className="logo-element">NOTE</span>
+  </div>
+);

@@ -1,3 +1,5 @@
+@import '../../../index.scss';
+
 .search-bar { 
     position: relative;
     display: flex;
@@ -5,3 +7,27 @@
     justify-content: center;
     margin: 24px  0;
 }
+
+.search-bar div input { 
+    outline: none;
+    border: 1px solid #1f1f1f;
+    padding: 8px 16px;
+    background: $base-color-app;
+    color: $base-color-text;
+}
+
+// .btn__search {
+//     position: relative;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// }
+
+// .btn__search button {
+//     padding: 8px;
+//     outline: none;
+//     border:none;
+//     background: #111;
+//     color: #fff;
+//     cursor: pointer;
+// }

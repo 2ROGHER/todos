@@ -11,6 +11,8 @@ import {
 import { TaskComponent } from "../../ui/task/TaskComponent";
 import { IState } from "../../../models/interfaces/state.interface";
 
+import "./TasksList.scss";
+
 export const TaskLists = (): JSX.Element => {
   const dispatch = useDispatch<Dispatch<IAction<Task | string>>>();
 
@@ -42,10 +44,10 @@ export const TaskLists = (): JSX.Element => {
   const handleCompletedTask = (id: string, task: Task) => {};
   return (
     <>
-      <div className="task-lists">
+      <div className="tasks-list">
         <h1>Task Lists</h1>
-        <div className="task-list-content">
-          <ul className="task-list">
+        <div className="tasks-list__content">
+          <ul>
             {todos.length ? (
               todos.map((task: Task) => (
                 <li
