@@ -1,40 +1,79 @@
 import React, { JSX, useEffect, useState } from "react";
 import "./Task.scss";
 import Task from "../../../models/domain/task.model";
+import { TaskStatus } from "../../../enums/task-status.enum";
+import DropdownMenu from "../../utils/drop-down/DropdownMenu";
+import { useInput } from "../../../hooks";
 
 export const TaskComponent = ({
-  id,
-  title,
-  content,
-  completed,
+  _id,
+  _title,
+  _content,
+  _status,
+  _createdAt,
+  _updatedAt,
   onRemove,
   onCompleted,
   onUpdate,
+  onToggleSetStatus,
 }: {
-  id: string;
-  title: string;
-  content: string;
-  completed: boolean;
+  _id: string;
+  _title: string;
+  _content: string;
+  _status: string;
+  _createdAt: string;
+  _updatedAt: string;
+
   onRemove: (id: string) => void;
   onCompleted: () => void;
   onUpdate: (task: Task) => void;
+  onToggleSetStatus: (s: string, id: string) => void;
 }): JSX.Element => {
   // Use here the useInput custom hook to dooing
   const [isUdpdate, setIsUpdate] = useState({
     title: false,
     content: false,
   });
+
   const [updatedTerm, setUpdateTerm] = useState({
     title: "",
     content: "",
   });
 
+  const { i, memoizedChangeV, _ } = useInput({});
+
   useEffect(() => {
-    setUpdateTerm({ ...updatedTerm, title, content });
+    setUpdateTerm({ ...updatedTerm, _title, _content });
   }, []);
 
   return (
     <section className="task">
+      <div className="task-header">
+        <div className="">
+          <button
+            title="btn-delete"
+            className="btn-delete"
+            onClick={() => onRemove(_id)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              color="tomato"
+              fill="none"
+            >
+              <path
+                d="M18 6L12 12M12 12L6 18M12 12L18 18M12 12L6 6"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
       {isUdpdate.title ? (
         <div className="task__header">
           <input
@@ -54,7 +93,7 @@ export const TaskComponent = ({
               setIsUpdate({ ...isUdpdate, title: !isUdpdate.title })
             }
           >
-            {title}
+            {_title}
           </h4>
         </div>
       )}
@@ -78,38 +117,69 @@ export const TaskComponent = ({
               setIsUpdate({ ...isUdpdate, content: !isUdpdate.content })
             }
           >
-            {content}
+            {_content}
           </h4>
         </div>
       )}
 
       <div className="task-footer">
         <div className="task__created">
-          <span>23/94/24</span><span>.23:00 a.m</span>
+          <span>23/94/24</span>
+          <span>.23:00 a.m</span>
         </div>
         <div className="task__actions">
           <div className="">
-            <button className="btn-favorites">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                color="#fff1f1"
-                fill="none"
+            {_status === TaskStatus.ALL && (
+              <button
+                title="btn-toggle"
+                className="btn-favorites"
+                onClick={() => onToggleSetStatus(TaskStatus.FAVORITE, _id)}
               >
-                <path
-                  d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  color="#fff1f1"
+                  fill="none"
+                >
+                  <path
+                    d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+            )}
+
+            {_status == TaskStatus.FAVORITE && (
+              <button
+                title="btn-toggle"
+                className="btn-favorites"
+                onClick={() => onToggleSetStatus(TaskStatus.ALL, _id)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  color="tomato"
+                  fill="tomato"
+                >
+                  <path
+                    d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+            )}
           </div>
 
           <div className="">
-            <button className="btn-pin">
+            <button className="btn-pin" title="btn-pin">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -130,43 +200,51 @@ export const TaskComponent = ({
           </div>
 
           <div className="">
-            <button className="btn-delete" onClick={() => onRemove(id)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                color="tomato"
-                fill="none"
-              >
-                <path
-                  d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M3 5.5H21M16.0557 5.5L15.3731 4.09173C14.9196 3.15626 14.6928 2.68852 14.3017 2.39681C14.215 2.3321 14.1231 2.27454 14.027 2.2247C13.5939 2 13.0741 2 12.0345 2C10.9688 2 10.436 2 9.99568 2.23412C9.8981 2.28601 9.80498 2.3459 9.71729 2.41317C9.32164 2.7167 9.10063 3.20155 8.65861 4.17126L8.05292 5.5"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M9.5 16.5L9.5 10.5"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M14.5 16.5L14.5 10.5"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-              </svg>
+            <button title="btn-menu" className="btn-menu">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  color="#fffafa"
+                  fill="none"
+                >
+                  <rect
+                    x="10.5"
+                    y="3"
+                    width="3"
+                    height="3"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <rect
+                    x="10.5"
+                    y="10.5"
+                    width="3"
+                    height="3"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <rect
+                    x="10.5"
+                    y="18"
+                    width="3"
+                    height="3"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
             </button>
           </div>
         </div>
+      </div>
+      <div className="dropdown-menu">
+        <DropdownMenu id={_id} items={Object.values({ ...TaskStatus })} />
       </div>
 
       {/* <div className="task__actions">

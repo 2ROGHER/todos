@@ -2,32 +2,32 @@
  * This module is responsible to define all models (object) in our application.
  */
 
+import { TaskStatus } from "../../enums/task-status.enum";
+
 class Task {
   private _id: string;
   private _title: string;
   private _content: string;
-  private _completed: boolean;
 
-  private _favorites: boolean;
-  private _deleted: boolean;
-  private _archived: boolean;
+  private _status: TaskStatus;
+
+  private _createdAt: string;
+  private _updatedAt: string;
 
   constructor(
     id: string,
     title: string,
     content: string,
-    completed: boolean,
-    favorites: boolean,
-    deleted: boolean,
-    archived: boolean
+    status: TaskStatus,
+    createdAt: string,
+    updatedAt: string
   ) {
     this._id = id;
     this._title = title;
     this._content = content;
-    this._completed = completed;
-    this._favorites = favorites;
-    this._deleted = deleted;
-    this._archived = archived;
+    this._status = status;
+    this._createdAt = createdAt;
+    this._updatedAt = updatedAt;
   }
 
   get id(): string {
@@ -41,48 +41,40 @@ class Task {
     return this._content;
   }
 
-  get completed(): boolean {
-    return this._completed;
+  set status(s: TaskStatus) {
+    this._status = s;
   }
 
-  set id(value: string) {
-    this._id = value;
+  get status() {
+    return this._status;
   }
 
-  set title(value: string) {
-    this._title = value;
+  set id(v: string) {
+    this._id = v;
   }
 
-  set content(value: string) {
-    this._content = value;
+  set title(v: string) {
+    this._title = v;
   }
 
-  set completed(value: boolean) {
-    this._completed = value;
+  set content(v: string) {
+    this._content = v;
   }
 
-  get favorites(): boolean {
-    return this._favorites;
+  set createAt(v: string) {
+    this._createdAt = v;
   }
 
-  set favorites(value: boolean) {
-    this._favorites = value;
+  get createAt() {
+    return this._createdAt;
   }
 
-  get deleted(): boolean {
-    return this._deleted;
+  set updateAt(v: string) {
+    this._updatedAt = v;
   }
 
-  set deleted(value: boolean) {
-    this._deleted = value;
-  }
-
-  get archived(): boolean {
-    return this._archived;
-  }
-
-  set archived(value: boolean) {
-    this._archived = value;
+  get updateAt() {
+    return this._updatedAt;
   }
 }
 

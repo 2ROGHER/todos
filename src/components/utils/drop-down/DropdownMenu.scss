@@ -1,0 +1,37 @@
+@import '../../../index.scss';
+
+.dropdown-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdown-list div {
+    background: #111;
+    border: 1px solid $base-border-color;
+    padding: 8px;
+    // padding: 0;
+}
+
+.dropdown-menu-list {
+    display: flex;
+    flex-direction: column;
+}
+.dropdown-menu-item {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 6px;
+    font-size: 14px;
+}
+.dropdown-menu-item span {
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-menu-item:hover {
+    background: #000;
+    cursor: pointer;
+}

@@ -12,20 +12,22 @@ import { TaskComponent } from "../../ui/task/TaskComponent";
 import { IState } from "../../../models/interfaces/state.interface";
 
 import "./TasksList.scss";
+import { addTaskStatusAction } from "../../../redux/actions/color.actions";
+import { TaskStatus } from "../../../enums/task-status.enum";
 
 export const TaskLists = (): JSX.Element => {
-  const dispatch = useDispatch<Dispatch<IAction<Task | string>>>();
+  const d = useDispatch<Dispatch<IAction<Task | string>>>();
 
   // We need to get all [Tasks] when the component is rendered.
   const { todos } = useSelector((state: any) => state);
 
   useEffect(() => {
     // When the component is mounted fot first time, we need to load all tasks.
-    dispatch(getAllTasksAction());
+    d(getAllTasksAction());
   }, []);
 
   const handleRemoveTask = (id: string) => {
-    dispatch(removeTaskAction(id));
+    d(removeTaskAction(id));
   };
 
   /**
@@ -33,7 +35,7 @@ export const TaskLists = (): JSX.Element => {
    * @param id Task ID
    */
   const handleUpdateTask = (task: Task) => {
-    dispatch(udpateTaskAction(task));
+    d(udpateTaskAction(task));
   };
 
   /**
@@ -42,28 +44,38 @@ export const TaskLists = (): JSX.Element => {
    * @param task The task
    */
   const handleCompletedTask = (id: string, task: Task) => {};
+
+  /**
+   * This method is used to set the [status] of each task as [favorites]
+   * @param id Task ID
+   */  
+
+  const toggleSetTaskStatus = (s: string, id: string) => {
+    d(addTaskStatusAction(s, id));
+  };
+
+  console.log(todos);
+  
+
   return (
     <>
       <div className="tasks-list">
         <h1>Task Lists</h1>
         <div className="tasks-list__content">
-          <ul>
+          <ul className="tasks-list">
             {todos.length ? (
-              todos.map((task: Task) => (
-                <li
-                  key={task.id}
+              todos.map((t: Task) => (
+                <li 
+                  key={t.id}
                   className="taks-list__item"
                   style={{ listStyleType: "none" }}
                 >
                   <TaskComponent
-                    {...task}
-                    id={task.id}
-                    title={task.title}
-                    content={task.content}
-                    completed={task.completed}
+                    {...t}
                     onRemove={handleRemoveTask}
                     onCompleted={() => console.log("completed")}
                     onUpdate={handleUpdateTask}
+                    onToggleSetStatus={toggleSetTaskStatus}
                   />
                 </li>
               ))

@@ -1,5 +1,6 @@
 import { title } from "process";
 import React, { JSX, useState } from "react";
+import "./CreateTaskForm.scss";
 
 /**
  * This component is responsible to render the create New Todo From component.
@@ -10,13 +11,19 @@ export const CreateTaskFormComponent = ({
   i,
   onCreate,
   onSetV,
+  onHiddeForm,
 }: {
   i: { title: string; content: string };
-  onCreate: (e: any) => void;
+  onCreate: () => void;
   onSetV: (k: string, v: any) => void; // We need to have careful defining the functions.
+  onHiddeForm: (e: boolean) => void;
 }): JSX.Element => {
   return (
-    <form action="#" className="form" onSubmit={(e) => onCreate(e)}>
+    <form
+      action="#"
+      className="form-task__create"
+      onSubmit={() => onCreate()}
+    >
       <div className="form-title">
         <input
           className="form-title__input"
@@ -24,7 +31,7 @@ export const CreateTaskFormComponent = ({
           name="title"
           value={i.title} // This is useful to control the input fields.
           onChange={(e) => onSetV(e.target.name, e.target.value)}
-          placeholder="Title"
+          placeholder="Task title"
         />
       </div>
 
@@ -39,11 +46,15 @@ export const CreateTaskFormComponent = ({
         />
       </div>
 
-      <div className="form-submit">
+      <div className="button-task__create">
         <button
-          className="form-submit__button"
+          className="btn__create"
           type="submit"
-          onClick={onCreate}
+          onClick={() => {
+            onCreate();
+            console.log("exucting form here");
+            onHiddeForm(false);
+          }}
         >
           <span>add task</span>
         </button>

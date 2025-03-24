@@ -9,7 +9,8 @@
     height: 100%;
     padding: $base-padding-medium $base-padding-small;
 }
-.menu-list ul, .settings-menu ul {
+.menu-list ul,
+.settings-menu ul {
     position: inherit;
     display: flex;
     flex-direction: column;
@@ -19,27 +20,34 @@
     padding-inline-start: 0;
 }
 
-.menu-list ul li, .settings-menu ul li {
+.menu-list ul li,
+.settings-menu ul li {
     list-style-type: none;
 }
 
-.menu-list ul li span, .settings-menu ul li span {
+.menu-list ul li span,
+.settings-menu ul li span {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 12px;
 }
 
-.menu-list ul li:hover, .settings-menu ul li:hover {
+.menu-list ul li:hover,
+.settings-menu ul li:hover {
     background: #111111;
     border-radius: 8px;
     cursor: pointer;
 }
-.btn__search, .btn__new, .btn-settings, .btn-menu {
+.btn__search,
+.btn__new,
+.btn__settings,
+.btn__menu,
+.btn__account,
+.btn__fav {
     background: none;
-    outline:  none;
+    outline: none;
     border: none;
 }
-
 
 // TODO: Here goes all styles to @media queries

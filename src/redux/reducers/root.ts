@@ -3,7 +3,7 @@
  */
 
 import { combineReducers } from "redux";
-import { todosReducer } from "./tasks.reducer";
+import { tasksReducer } from "./tasks.reducer";
 import { filtersReducer } from "./filters.reducer";
 import { uiReducer } from "./ui.reducer";
 import { loginReducer } from "./login.reducer";
@@ -12,7 +12,7 @@ import { singUpReducer } from "./signup.reducer";
 
 // TODO: Implement custom Middlewares to apply to save and login an user to the page
 const rootReducer = combineReducers({
-  todos: todosReducer,
+  todos: tasksReducer,
   filters: filtersReducer,
   // ui: uiReducer,
   login: loginReducer,

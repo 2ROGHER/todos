@@ -1,0 +1,22 @@
+@import '../../../index.scss';
+
+.filter-bar {
+    position: relative;
+    // background-color: red;
+    margin: 32px 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filterbar-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0;
+    width: fit-content;
+    padding: 16px;
+    border: 1px solid $base-border-color;
+    border-radius: 4px;
+}

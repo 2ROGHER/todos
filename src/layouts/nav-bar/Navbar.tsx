@@ -1,7 +1,7 @@
 /**
  * This component is responsible for rendering the navigation bar section.
  */
-import React, { JSX } from "react";
+import React, { JSX, useState } from "react";
 import { Logo } from "../../components/ui/logo/Logo";
 import "./Navbar.scss";
 import { NavLink } from "react-router";
@@ -13,7 +13,15 @@ import { NavLink } from "react-router";
  * @returns { JSX.Element } - This function returns a JSX element.
  */
 
-export const NavBar = (): JSX.Element => {
+export const NavBar = ({
+  active,
+  onSetActiveForm,
+  onFilterFavs,
+}: {
+  active: boolean;
+  onSetActiveForm: (e: boolean) => void;
+  onFilterFavs: () => void;
+}): JSX.Element => {
   return (
     <nav className="nav-bar">
       <div className="nav-bar__logo">
@@ -48,7 +56,7 @@ export const NavBar = (): JSX.Element => {
             </NavLink>
           </li>
           <li className="nav-bar-menu__item">
-            <button type="submit" className="btn__search">
+            <button type="submit" className="btn__search" title="btn__serarch" onClick={() => onSetActiveForm(true)}>
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +84,7 @@ export const NavBar = (): JSX.Element => {
             </button>
           </li>
           <li className="nav-bar-menu__item">
-            <button className="btn__new">
+            <button  title="btn-new" className="btn__new" onClick={() => onSetActiveForm(true)}>
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +113,10 @@ export const NavBar = (): JSX.Element => {
             </button>
           </li>
           <li className="nav-bar-menu__item">
-            <NavLink to="/favorites">
+            <button
+              className="btn__fav"
+              onClick={onFilterFavs}
+            >
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -123,10 +134,10 @@ export const NavBar = (): JSX.Element => {
                   />
                 </svg>
               </span>
-            </NavLink>
+            </button>
           </li>
           <li className="nav-bar-menu__item">
-            <NavLink to="/account">
+            <button className="btn__account">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +160,7 @@ export const NavBar = (): JSX.Element => {
                   />
                 </svg>
               </span>
-            </NavLink>
+            </button>
           </li>
         </ul>
       </div>
@@ -157,7 +168,7 @@ export const NavBar = (): JSX.Element => {
       <div className="settings-menu">
         <ul className="settings-menu">
           <li className="settings-item">
-            <button className="btn-menu">
+            <button className="btn__menu">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -192,7 +203,7 @@ export const NavBar = (): JSX.Element => {
             </button>
           </li>
           <li className="settings-item">
-            <button className="btn-settings">
+            <button className="btn__settings">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -15,13 +15,14 @@ import {
 } from "../action-types/filters";
 
 import { SEARCH_TASK } from "../action-types/filters";
+import { TaskStatus } from "../../enums/task-status.enum";
 
-const initialState: any = {};
+const initialState: Task | any = {};
 
 export const taskReducer = (
-  state = initialState,
+  state: Task | any = initialState,
   { type, payload }: { type: string; payload: any }
-): Task | any => {
+): Task | {} => {
   switch (type) {
     case CREATE_TASK:
       // This reducer method return a new Task instance object created
@@ -29,40 +30,27 @@ export const taskReducer = (
         v4(),
         payload.title,
         payload.content,
-        payload.completed,
-        payload.favorites,
-        payload.deleted,
-        payload.archived
+        TaskStatus.ALL, // This [status] is for default
+        new Date().getTime().toString(),
+        new Date().getTime().toString()
       );
-      // return { ...state, id: v4(), ...payload } as Task;
+    // return { ...state, id: v4(), ...payload } as Task;
 
     case UPDATE_TASK:
-      // return new Task(
-      //   payload.id,
-      //   payload.title,
-      //   payload.content,
-      //   payload.completed,
-      //   payload.favorites,
-      //   payload.deleted,
-      //   payload.archived
-      // );
       return { ...state, ...payload } as Task;
 
     case SEARCH_TASK:
-    console.log(state, payload)
       return (
         state.title.toLowerCase().includes(payload) ||
         state.content.toLowerCase().includes(payload)
       ); // this return true o false
 
+    // This case allows us to set the [status] of each task.
     case SET_TASK_STATUS:
-      return { ...state, status: payload } as Task;
+      return state._id == payload.id ? { ...state, _status: payload.s } : state;
 
     case FILTER_TASKS_BY_STATUS:
-      return state.status == payload;
-
-    case SET_SORT_VALUE:
-      return { ...state, sortBy: payload } as Task;
+      return state._status === payload; // This mathes whether if [task status] is equal to payload.
 
     case SORT_TASKS_BY_VALUE:
       return state.sortBy == payload;

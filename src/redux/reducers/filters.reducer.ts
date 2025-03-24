@@ -8,6 +8,7 @@ import { SET_SEARCH_TERM } from "../action-types/filters";
 const initialState: {} = {
   search: "",
   status: "",
+  favorites: [],
   sortBy: "",
 };
 

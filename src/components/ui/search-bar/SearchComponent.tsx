@@ -4,9 +4,11 @@ import "./Search.scss";
 export const SearchComponent = ({
   t,
   onSearch,
+  onHiddeSearchbar,
 }: {
   t: { search: string };
   onSearch: (k: string, v: string) => void;
+  onHiddeSearchbar: () => void;
   // onSearch: <K extends keyof typeof t>(k: K, v: (typeof t)[K]) => void;
 }): JSX.Element => {
   // Need to add a local variable to store the value here.

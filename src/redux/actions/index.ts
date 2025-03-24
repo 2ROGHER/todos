@@ -6,7 +6,7 @@
 import { Action } from "redux";
 import Task from "../../models/domain/task.model";
 import { IAction } from "../../models/interfaces/action.interface";
-import { CREATE_TASK, UPDATE_TASK } from "../action-types/task";
+import {  CREATE_TASK, UPDATE_TASK } from "../action-types/task";
 import { REMOVE_TASK, GET_ALL_TASKS } from "../action-types/tasks";
 import {
   FILTER_TASKS_BY_STATUS,
@@ -41,8 +41,6 @@ export const udpateTaskAction = (task: Task): IAction<Task> => ({
   payload: task,
 });
 
-
-
 /**
  * This action creator is used to retrieve all task by the tasks list.
  * @returns { IAction []} All list of tasks.
@@ -50,8 +48,6 @@ export const udpateTaskAction = (task: Task): IAction<Task> => ({
 export const getAllTasksAction = () => ({
   type: GET_ALL_TASKS,
 });
-
-
 
 export const setSearchTermAction = (t: string): IAction<string> => ({
   type: SET_SEARCH_TERM,
@@ -63,14 +59,14 @@ export const searchTaskByTermValueAction = (t: string) => ({
   payload: t,
 });
 
-export const setTaskStatusActions = (v: string) => ({
-  type: SET_TASK_STATUS_FILTER,
-  payload: v,
-});
+// export const setTaskStatusActions = (v: string) => ({
+//   type: SET_TASK_STATUS_FILTER,
+//   payload: v,
+// });
 
-export const filterTasksByStatusActio = () => ({
-  type: FILTER_TASKS_BY_STATUS,
-});
+// export const filterTasksByStatusAction = () => ({
+//   type: FILTER_TASKS_BY_STATUS,
+// });
 
 export const setSortValueAction = (v: string) => ({
   type: SET_SORT_VALUE_FILTER,
@@ -80,3 +76,5 @@ export const setSortValueAction = (v: string) => ({
 export const sortTasksByValueAction = () => ({
   type: SORT_TASKS_BY_VALUE,
 });
+
+

@@ -1,0 +1,47 @@
+@import "../../../index.scss";
+
+.form-task__create {
+    position: relative;
+    padding: 24px 16px;
+    border: 1px solid #1f1f1f;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 312px;
+    display: flex;
+    gap: 12px;
+}
+
+.form-title input,
+.form-content input {
+    outline: none;
+    color: $base-color-text;
+    background: none;
+    border: 1px solid #1f1f1f;
+    width: 100%;
+    padding: 8px 16px
+}
+
+.button-task__create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+.button-task__create button {
+    outline: none;
+    background: none;
+
+    color: $base-color-text;
+    text-align: center;
+    padding: 8px 20px;
+    border: 1px solid $base-color-text;
+    text-transform: capitalize;
+    font-family: $base-font-family-inter;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    
+}
+
+/* TODO ("implemented the disabled styles here letter")*/
