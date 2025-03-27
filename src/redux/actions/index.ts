@@ -13,7 +13,6 @@ import {
   SEARCH_TASK,
   SET_SEARCH_TERM,
   SET_SORT_VALUE_FILTER,
-  SET_TASK_STATUS_FILTER,
   SORT_TASKS_BY_VALUE,
 } from "../action-types/filters";
 /**

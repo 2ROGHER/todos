@@ -6,3 +6,4 @@ export * from "./state.interface";
 export * from "./task.interface";
 export * from "./type.interface";
 export * from "./signup.interface";
+export * from './task-state.interface';

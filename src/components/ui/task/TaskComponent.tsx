@@ -12,10 +12,8 @@ export const TaskComponent = ({
   _status,
   _createdAt,
   _updatedAt,
-  onRemove,
-  onCompleted,
   onUpdate,
-  onToggleSetStatus,
+  onSetStatus,
 }: {
   _id: string;
   _title: string;
@@ -24,10 +22,8 @@ export const TaskComponent = ({
   _createdAt: string;
   _updatedAt: string;
 
-  onRemove: (id: string) => void;
-  onCompleted: () => void;
   onUpdate: (task: Task) => void;
-  onToggleSetStatus: (s: string, id: string) => void;
+  onSetStatus: (s: string, id: string) => void;
 }): JSX.Element => {
   // Use here the useInput custom hook to dooing
   const [isUdpdate, setIsUpdate] = useState({
@@ -53,7 +49,7 @@ export const TaskComponent = ({
           <button
             title="btn-delete"
             className="btn-delete"
-            onClick={() => onRemove(_id)}
+            onClick={() => onSetStatus(TaskStatus.DELETED, _id)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +129,7 @@ export const TaskComponent = ({
               <button
                 title="btn-toggle"
                 className="btn-favorites"
-                onClick={() => onToggleSetStatus(TaskStatus.FAVORITE, _id)}
+                onClick={() => onSetStatus(TaskStatus.FAVORITE, _id)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

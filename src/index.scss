@@ -21,11 +21,17 @@ $base-font-family: $base-font-family-inter;
 $base-color-app: #000000;
 $base-color-text: #fffdfd;
 $base-border-color: #1f1f1f;
+$base-bg-color: #111111;
+$base-input-color: #757575;
 
 
 // Base sizes
 $base-padding-small: 16px;
 $base-padding-medium: 24px;
+
+// Border sizes
+$base-box-border: 4px;
+
 // Base
 * {
     margin: 0;

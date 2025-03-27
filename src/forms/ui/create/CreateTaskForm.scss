@@ -16,17 +16,31 @@
 .form-content input {
     outline: none;
     color: $base-color-text;
-    background: none;
-    border: 1px solid #1f1f1f;
+    background: transparent;
+    border: none;
     width: 100%;
     padding: 8px 16px
 }
 
-.button-task__create {
+.form-title input {
+    font-size: 24px;
+}
+
+.form-footer {
+    position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-top: 8px;
+    gap: 4px;
+    justify-content: flex-end;
+    cursor: pointer;
+
+}
+
+.button-task__create {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // margin-top: 8px;
 }
 .button-task__create button {
     outline: none;
@@ -41,7 +55,20 @@
     font-weight: 500;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 4px;
     
+}
+
+.form-footer div span:not(#btn-text) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.form-footer div:hover span {
+    background: $base-bg-color;
 }
 
 /* TODO ("implemented the disabled styles here letter")*/

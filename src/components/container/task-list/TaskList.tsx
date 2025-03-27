@@ -12,23 +12,25 @@ import { TaskComponent } from "../../ui/task/TaskComponent";
 import { IState } from "../../../models/interfaces/state.interface";
 
 import "./TasksList.scss";
-import { addTaskStatusAction } from "../../../redux/actions/color.actions";
+import { addTaskStatusAction } from "../../../redux/actions/task.actions";
 import { TaskStatus } from "../../../enums/task-status.enum";
+import { selectedFilteredTasks } from "../../../redux/selectors/filter.selector";
+import { setFilterValueAction } from "../../../redux/actions/filters.actions";
 
 export const TaskLists = (): JSX.Element => {
   const d = useDispatch<Dispatch<IAction<Task | string>>>();
 
   // We need to get all [Tasks] when the component is rendered.
-  const { todos } = useSelector((state: any) => state);
+  const todos = useSelector(selectedFilteredTasks);
 
   useEffect(() => {
     // When the component is mounted fot first time, we need to load all tasks.
-    d(getAllTasksAction());
+    // d(getAllTasksAction());
+    // 1. Here we need to make a [dispatch] to [store] to get all [tasks] from the [store] filtered by ["ALL"]
+    // [status]
+    // d(getAllTasksAction());
+    d(setFilterValueAction(TaskStatus.ALL)); // Dispatched when all tasks has a [ALL] status
   }, []);
-
-  const handleRemoveTask = (id: string) => {
-    d(removeTaskAction(id));
-  };
 
   /**
    * This handler method is used do dispath a action to update the task with the ID
@@ -48,14 +50,11 @@ export const TaskLists = (): JSX.Element => {
   /**
    * This method is used to set the [status] of each task as [favorites]
    * @param id Task ID
-   */  
+   */
 
-  const toggleSetTaskStatus = (s: string, id: string) => {
-    d(addTaskStatusAction(s, id));
+  const handleSetStatus = (s: string, id: string) => {
+    d(addTaskStatusAction(s, id)); // {id: ID, status: DELETED}
   };
-
-  console.log(todos);
-  
 
   return (
     <>
@@ -63,19 +62,19 @@ export const TaskLists = (): JSX.Element => {
         <h1>Task Lists</h1>
         <div className="tasks-list__content">
           <ul className="tasks-list">
-            {todos.length ? (
+            {todos ? (
               todos.map((t: Task) => (
-                <li 
+                <li
                   key={t.id}
                   className="taks-list__item"
                   style={{ listStyleType: "none" }}
                 >
                   <TaskComponent
                     {...t}
-                    onRemove={handleRemoveTask}
-                    onCompleted={() => console.log("completed")}
+                    // onRemove={handleRemoveTask}
+                    // onCompleted={() => console.log("completed")}
                     onUpdate={handleUpdateTask}
-                    onToggleSetStatus={toggleSetTaskStatus}
+                    onSetStatus={handleSetStatus}
                   />
                 </li>
               ))

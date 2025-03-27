@@ -12,7 +12,7 @@ import { singUpReducer } from "./signup.reducer";
 
 // TODO: Implement custom Middlewares to apply to save and login an user to the page
 const rootReducer = combineReducers({
-  todos: tasksReducer,
+  tasks: tasksReducer,
   filters: filtersReducer,
   // ui: uiReducer,
   login: loginReducer,

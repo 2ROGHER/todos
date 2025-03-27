@@ -1,19 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addTaskStatusAction } from "../../../redux/actions/task.actions";
 import "./FilterBar.scss";
-import DropdownMenu from '../../utils/drop-down/DropdownMenu';
-import { TaskStatus } from '../../../enums/task-status.enum';
+import DropdownMenu from "../../utils/drop-down/DropdownMenu";
+import { TaskStatus } from "../../../enums/task-status.enum";
 
-function FilterBarComponent() {
+import { useInput } from "../../../hooks";
+import { Dispatch } from "redux";
+import { IAction } from "../../../models/interfaces";
+import Task from "../../../models/domain/task.model";
+import { filterTaskByStatus } from "../../../redux/actions/tasks.actions";
+
+function FilterBarComponent({ g }: { g: (e: any) => void }) {
+  const d = useDispatch<Dispatch<IAction<Task | any>>>();
+  const { i, memoizedChangeV, _ } = useInput({});
+
+  useEffect(() => {
+    // set component [status]
+    // d(addTaskStatusAction(i.status));
+
+    // Weather exists any changes at [i] object status we need to [dispatch] an action to the reducer
+    // an filter the task by status
+    // d(filterTaskByStatus(i.status));
+    console.log("changes exists at ", i);
+    g({ ...i})
+  }, [i]);
+
   return (
     <aside className="filterbar-content">
-      <div className="">
-        <button title="filter-bar">
-          <span>status:</span>
-          <span>all</span>
+      <div className="filterbar-box">
+        <button title="filterbar-arrow__down" className="filterbar-arrow__down">
+          <span className="status">status:</span>
+          <span className="select-item">{i.status}</span>
           <span className="arrow-down">
             <svg
-              width="15"
-              height="15"
+              width="24"
+              height="24"
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -36,10 +58,14 @@ function FilterBarComponent() {
         </button>
       </div>
       <div className="filterbar-menu">
-        <DropdownMenu items={Object.values({ ...TaskStatus })} />
+        <DropdownMenu
+          items={Object.values({ ...TaskStatus })}
+          type="multiple"
+          onSetV={memoizedChangeV}
+        />
       </div>
     </aside>
-  ); 
+  );
 }
 
-export default FilterBarComponent   
+export default FilterBarComponent;

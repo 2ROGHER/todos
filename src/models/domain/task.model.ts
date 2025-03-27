@@ -61,19 +61,19 @@ class Task {
     this._content = v;
   }
 
-  set createAt(v: string) {
+  set createdAt(v: string) {
     this._createdAt = v;
   }
 
-  get createAt() {
+  get createdAt() {
     return this._createdAt;
   }
 
-  set updateAt(v: string) {
+  set updatedAt(v: string) {
     this._updatedAt = v;
   }
 
-  get updateAt() {
+  get updatedAt() {
     return this._updatedAt;
   }
 }

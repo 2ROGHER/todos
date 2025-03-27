@@ -7,6 +7,7 @@ import Task from "../../../models/domain/task.model";
 import { Dispatch } from "redux";
 import { IAction } from "../../../models/interfaces/action.interface";
 import { useInput } from "../../../hooks/useInput.hook";
+import { TaskStatus } from "../../../enums/task-status.enum";
 
 export const CreateTaskFormContainer = ({
   f,
@@ -28,7 +29,14 @@ export const CreateTaskFormContainer = ({
   const handleCreateTask = () => {
     dispatch(
       createTaskAction(
-        new Task(v4(), i.title, i.content, false, false, false, false)
+        new Task(
+          v4(),
+          i.title,
+          i.content,
+          TaskStatus.ALL,
+          new Date().toString(),
+          new Date().toString()
+        )
       )
     );
     reset();

@@ -5,6 +5,7 @@ import React, { JSX, useState } from "react";
 import { Logo } from "../../components/ui/logo/Logo";
 import "./Navbar.scss";
 import { NavLink } from "react-router";
+import { TaskStatus } from "../../enums/task-status.enum";
 /**
  * This function is responsible to render the navigation bar JSX component.
  * In this project, we are going tu use the BEM styling notations to add styles to elements, cause
@@ -16,11 +17,11 @@ import { NavLink } from "react-router";
 export const NavBar = ({
   active,
   onSetActiveForm,
-  onFilterFavs,
+  onSetFilter,
 }: {
   active: boolean;
   onSetActiveForm: (e: boolean) => void;
-  onFilterFavs: () => void;
+  onSetFilter: (s: string) => void;
 }): JSX.Element => {
   return (
     <nav className="nav-bar">
@@ -30,7 +31,11 @@ export const NavBar = ({
       <div className="menu-list">
         <ul className="nav-bar-menu__list">
           <li className="nav-bar-menu__item">
-            <NavLink to="/home">
+            <button
+              className="btn__home"
+              title="btn__home"
+              onClick={() => onSetFilter(TaskStatus.ALL)}
+            >
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -53,10 +58,15 @@ export const NavBar = ({
                   />
                 </svg>
               </span>
-            </NavLink>
+            </button>
           </li>
           <li className="nav-bar-menu__item">
-            <button type="submit" className="btn__search" title="btn__serarch" onClick={() => onSetActiveForm(true)}>
+            <button
+              type="submit"
+              className="btn__search"
+              title="btn__serarch"
+              onClick={() => onSetActiveForm(true)}
+            >
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +94,11 @@ export const NavBar = ({
             </button>
           </li>
           <li className="nav-bar-menu__item">
-            <button  title="btn-new" className="btn__new" onClick={() => onSetActiveForm(true)}>
+            <button
+              title="btn-new"
+              className="btn__new"
+              onClick={() => onSetActiveForm(true)}
+            >
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -114,8 +128,9 @@ export const NavBar = ({
           </li>
           <li className="nav-bar-menu__item">
             <button
+              title="btn__fav"
               className="btn__fav"
-              onClick={onFilterFavs}
+              onClick={() => onSetFilter(TaskStatus.FAVORITE)}
             >
               <span>
                 <svg

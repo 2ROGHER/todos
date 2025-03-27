@@ -8,11 +8,22 @@
     // margin: 24px  0;
 }
 
+.search-bar__input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 12px;
+}
+.search-bar__input span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .search-bar div input { 
     outline: none;
     // border: 1px solid #1f1f1f;
     border: none;
-    padding: 14px 20px;
+    padding: 14px 8px;
     background: $base-color-app;
     color: $base-color-text;
     width: 500px;

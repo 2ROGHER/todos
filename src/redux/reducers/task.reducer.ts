@@ -2,27 +2,20 @@
 
 import { v4 } from "uuid";
 import Task from "../../models/domain/task.model";
-import {
-  CREATE_TASK,
-  SET_SORT_VALUE,
-  SET_TASK_STATUS,
-  UPDATE_TASK,
-} from "../action-types/task";
+import { CREATE_TASK, UPDATE_TASK } from "../action-types/task";
 
-import {
-  FILTER_TASKS_BY_STATUS,
-  SORT_TASKS_BY_VALUE,
-} from "../action-types/filters";
+import { SET_TASK_STATUS } from "../action-types/filters";
 
 import { SEARCH_TASK } from "../action-types/filters";
 import { TaskStatus } from "../../enums/task-status.enum";
+import { p } from "react-router/dist/development/fog-of-war-Cm1iXIp7";
 
-const initialState: Task | any = {};
+var initialState!: Task;
 
 export const taskReducer = (
-  state: Task | any = initialState,
+  state: Task = initialState,
   { type, payload }: { type: string; payload: any }
-): Task | {} => {
+): Task | any => {
   switch (type) {
     case CREATE_TASK:
       // This reducer method return a new Task instance object created
@@ -31,7 +24,7 @@ export const taskReducer = (
         payload.title,
         payload.content,
         TaskStatus.ALL, // This [status] is for default
-        new Date().getTime().toString(),
+        new Date().getTime().toString(), // TODO("This [task] attribute should be to udpated letter")
         new Date().getTime().toString()
       );
     // return { ...state, id: v4(), ...payload } as Task;
@@ -47,13 +40,23 @@ export const taskReducer = (
 
     // This case allows us to set the [status] of each task.
     case SET_TASK_STATUS:
-      return state._id == payload.id ? { ...state, _status: payload.s } : state;
+      // return state.id == payload.id ? { ...state, status: payload.s } as Task : state;
+      return state.id == payload.id
+        ? new Task(
+            payload.id,
+            state.title,
+            state.content,
+            payload.s,
+            state.createdAt,
+            state.updatedAt
+          )
+        : state;
 
-    case FILTER_TASKS_BY_STATUS:
-      return state._status === payload; // This mathes whether if [task status] is equal to payload.
+    // case FILTER_TASKS_BY_STATUS:
+    //   return state.status === payload; // This mathes whether if [task status] is equal to payload.
 
-    case SORT_TASKS_BY_VALUE:
-      return state.sortBy == payload;
+    // case SORT_TASKS_BY_VALUE:
+    //   return state.sortBy == payload;
 
     default:
       return state;

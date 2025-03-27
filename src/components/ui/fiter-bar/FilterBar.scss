@@ -1,7 +1,36 @@
+@import "../../../index.scss";
+
 .filterbar-content {
     position: relative;
 }
 
+.filterbar-arrow__down {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 28px;
+    background: #1a1a1a;
+    border: none;
+    border-radius: $base-box-border;
+    color: $base-color-text;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: $base-font-family-inter;
+    text-transform: capitalize;
+}
+
+.arrow-down {
+    position: relative;
+    left: calc(28px/2);
+}
+
+.status {
+    color: #c2d4e2;
+}
+
+
 .filterbar-menu {
     position: absolute;
+    z-index: 10000;
 }

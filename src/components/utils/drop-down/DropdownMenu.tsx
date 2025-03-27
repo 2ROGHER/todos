@@ -5,13 +5,23 @@ import { Dispatch } from "redux";
 import { IAction } from "../../../models/interfaces";
 import Task from "../../../models/domain/task.model";
 import { useInput } from "../../../hooks";
-import { addTaskStatusAction } from "../../../redux/actions/color.actions";
+import { addTaskStatusAction } from "../../../redux/actions/task.actions";
 
+/**
+ * This custom hook allows us to create a [dropdown menu] to select and filter tasks from the list items.
+ * This [Component] receives as argument [props] and [props component]
+ * [type]: specifies the type of the dropdown menu is. Such as, 'only' only allow to choose one option and 'multiple'
+ * that allows to select multiple items to filter the task.
+ * @param param0
+ * @param emptyComponent
+ * @returns
+ */
 function DropdownMenu(
-  { 
-    id ="",
-    items= [""],
-
+  {
+    id = "",
+    items = [""],
+    type = "only", // or multiple
+    onSetV = (k: string, v: any) => {}
   },
   emptyComponent = (
     <>
@@ -19,14 +29,7 @@ function DropdownMenu(
     </>
   )
 ) {
-    const d = useDispatch<Dispatch<IAction<Task | any>>>();
-    const { i, memoizedChangeV, _} = useInput({});
-    console.log(i);
-    useEffect(() => {
-        // set component [status]
-        d(addTaskStatusAction(i.status, id))
-
-    }, [i]);
+  
   return (
     <section className="dropdown-list">
       <div className="">
@@ -34,17 +37,29 @@ function DropdownMenu(
           {items
             ? items.map((i: any) => (
                 <li className="dropdown-menu-item" key={i.key}>
-                  <span>
-                    <input
-                      type="radio"
-                      name="status"
-                      value={i}
-                      onChange={(e) => {
-                        memoizedChangeV(e.target.name, e.target.value);
-                      }}
-                      
-                    />
-                  </span>
+                  {type == "only" ? (
+                    <span>
+                      <input
+                        type="radio"
+                        name="status"
+                        value={i}
+                        onChange={(e) => {
+                          onSetV(e.target.name, e.target.value);
+                        }}
+                      />
+                    </span>
+                  ) : (
+                    <span>
+                      <input
+                        type="checkbox"
+                        name="status"
+                        value={i}
+                        onChange={(e) => {
+                          onSetV(e.target.name, e.target.value);
+                        }}
+                      />
+                    </span>
+                  )}
                   <span>{i.toLowerCase()}</span>
                 </li>
               ))
