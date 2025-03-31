@@ -3,9 +3,6 @@ import "./Pill.scss";
 export const PillComponent = ({
   status = "ALL",
   onClose = () => {},
-}: {
-  status: string;
-  onClose: () => void;
 }): JSX.Element => {
   return (
     <section className="pill">

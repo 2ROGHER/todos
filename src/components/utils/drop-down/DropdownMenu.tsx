@@ -12,16 +12,18 @@ import { addTaskStatusAction } from "../../../redux/actions/task.actions";
  * This [Component] receives as argument [props] and [props component]
  * [type]: specifies the type of the dropdown menu is. Such as, 'only' only allow to choose one option and 'multiple'
  * that allows to select multiple items to filter the task.
+ * This component is independent by the parent component.
+ * We need to use the [facorty] design pattern here.
+
  * @param param0
  * @param emptyComponent
  * @returns
  */
 function DropdownMenu(
   {
-    id = "",
-    items = [""],
-    type = "only", // or multiple
-    onSetV = (k: string, v: any) => {}
+    items = [""], // [items] array of items to render at DOM
+    type = "only", // type of menu to render. 'only' or 'multiple'
+    onSetV = (k: string, v: any) => {} // [hold] the item selecteded
   },
   emptyComponent = (
     <>
@@ -44,11 +46,13 @@ function DropdownMenu(
                         name="status"
                         value={i}
                         onChange={(e) => {
-                          onSetV(e.target.name, e.target.value);
+                          onSetV(e.target.name, e.target.value); // {status: "DELETED"}
                         }}
                       />
                     </span>
-                  ) : (
+                  ) : 
+                    // Wether the element input is ['multiple'] we need to render the input with type='checkbox'
+                  (
                     <span>
                       <input
                         type="checkbox"

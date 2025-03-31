@@ -3,6 +3,7 @@ import Task from "../../models/domain/task.model";
 import { ITask } from "../../models/interfaces";
 import { FilterState } from "../../models/interfaces/filter-state.interface";
 import { TaskStatus } from "../../enums/task-status.enum";
+// import { useState } from "react";
 
 // Firts we need to select the [tasks] state from the [base state] Store
 const tasksSelected = (state) => state.tasks.tasks;
@@ -29,43 +30,12 @@ export const selectedFilteredTasks = createSelector(
     // 2. return an array of all tasks
     // 3. Add filter as [searchTerm] to filter by search task
     // 4. compose all tasks to show a simple task list.
-    switch (filters.filterValue) {
-      case TaskStatus.ALL:
-        return tasks.filter(
-          (t: Task) =>
-            t.status === TaskStatus.ALL || t.status === TaskStatus.FAVORITE
-        );
-      case TaskStatus.COMPLETED:
-        return tasks.filter((t: Task) => t.status == TaskStatus.COMPLETED);
 
-      case TaskStatus.COMPLETED:
-        return tasks.filter((t: Task) => t.status == TaskStatus.COMPLETED);
-
-      case TaskStatus.PENDING:
-        return tasks.filter((t: Task) => t.status == TaskStatus.PENDING);
-      case TaskStatus.FAVORITE:
-        return tasks.filter((t: Task) => t.status == TaskStatus.FAVORITE);
-
-      case TaskStatus.DELETED:
-        return tasks.filter((t: Task) => t.status == TaskStatus.DELETED);
-
-      case TaskStatus.SAVED:
-        return tasks.filter((t: Task) => t.status == TaskStatus.SAVED);
-
-      case TaskStatus.VIEWED:
-        return tasks.filter((t: Task) => t.status == TaskStatus.VIEWED);
-
-      case TaskStatus.UPDATED:
-        return tasks.filter((t: Task) => t.status == TaskStatus.UPDATED);
-
-      case TaskStatus.TOUCHED:
-        return tasks.filter((t: Task) => t.status == TaskStatus.TOUCHED);
-
-      case TaskStatus.LOCKED:
-        return tasks.filter((t: Task) => t.status == TaskStatus.LOCKED);
-
-      case TaskStatus.HIDDEND:
-        return tasks.filter((t: Task) => t.status == TaskStatus.HIDDEND);
+    if(!filters.filterValue || filters.filterValue === "DEFAULT") {
+      return tasks;
     }
+
+    
+    return tasks.filter((t: Task) => t.status === filters.filterValue);
   }
 );

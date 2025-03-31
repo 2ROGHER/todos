@@ -125,7 +125,7 @@ export const TaskComponent = ({
         </div>
         <div className="task__actions">
           <div className="">
-            {_status === TaskStatus.ALL && (
+            {_status === TaskStatus.DEFAULT && (
               <button
                 title="btn-toggle"
                 className="btn-favorites"
@@ -153,7 +153,7 @@ export const TaskComponent = ({
               <button
                 title="btn-toggle"
                 className="btn-favorites"
-                onClick={() => onToggleSetStatus(TaskStatus.ALL, _id)}
+                onClick={() => onToggleSetStatus(TaskStatus.DEFAULT, _id)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

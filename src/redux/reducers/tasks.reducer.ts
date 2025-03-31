@@ -25,7 +25,7 @@ var initialState: TaskState = {
       v4() as string,
       "Default Task",
       "Default Content Task",
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -34,7 +34,7 @@ var initialState: TaskState = {
       "Default Task 2",
       "Default Content Task 2",
 
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -42,7 +42,7 @@ var initialState: TaskState = {
       v4(),
       "Default Task 3",
       "Default Content Task 3",
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -51,7 +51,7 @@ var initialState: TaskState = {
       "Default Task 4",
       "Default Content Task 4",
 
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -60,7 +60,7 @@ var initialState: TaskState = {
       "Default Task 5",
       "Default Content Task 5",
 
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -69,7 +69,7 @@ var initialState: TaskState = {
       "Default Task 6",
       "Default Content Task 6",
 
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -78,7 +78,7 @@ var initialState: TaskState = {
       "Default Task 7",
       "Default Content Task 7",
 
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -87,7 +87,7 @@ var initialState: TaskState = {
       "Default Task 8",
       "Default Content Task 8",
 
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -96,7 +96,7 @@ var initialState: TaskState = {
       "Default Task 9",
       "Default Content Task 9",
 
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -105,7 +105,7 @@ var initialState: TaskState = {
       "Default Task 10",
       "Default Content Task 10",
 
-      TaskStatus.ALL,
+      TaskStatus.DEFAULT,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),

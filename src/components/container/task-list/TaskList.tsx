@@ -29,7 +29,7 @@ export const TaskLists = (): JSX.Element => {
     // 1. Here we need to make a [dispatch] to [store] to get all [tasks] from the [store] filtered by ["ALL"]
     // [status]
     // d(getAllTasksAction());
-    d(setFilterValueAction(TaskStatus.ALL)); // Dispatched when all tasks has a [ALL] status
+    d(setFilterValueAction(TaskStatus.DEFAULT)); // Dispatched when all tasks has a [ALL] status
   }, []);
 
   /**

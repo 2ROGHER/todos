@@ -12,19 +12,16 @@ import Task from "../../../models/domain/task.model";
 import { filterTaskByStatus } from "../../../redux/actions/tasks.actions";
 
 function FilterBarComponent({ g }: { g: (e: any) => void }) {
+  // 1. [useDispatch] to dispatch actions if needed.
   const d = useDispatch<Dispatch<IAction<Task | any>>>();
+
+  // 2. [useInput] as local state to hold the (user input)
   const { i, memoizedChangeV, _ } = useInput({});
 
   useEffect(() => {
-    // set component [status]
-    // d(addTaskStatusAction(i.status));
-
-    // Weather exists any changes at [i] object status we need to [dispatch] an action to the reducer
-    // an filter the task by status
-    // d(filterTaskByStatus(i.status));
-    console.log("changes exists at ", i);
-    g({ ...i})
-  }, [i]);
+    // 3. When any changes occur at [i] local state we need to update the [state s] at useHomeContext
+    g({ ...i });
+  }, [i]); // When any changes occur int state [i] this component re-render with the new values.
 
   return (
     <aside className="filterbar-content">

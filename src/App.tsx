@@ -11,11 +11,12 @@ import { TaskLists } from "./components/container/task-list/TaskList";
 
 import { HashRouter as Router, useRoutes } from "react-router";
 import { Routes, Route } from "react-router";
-import { HomePage } from "./pages/home/HomePage";
+// import { HomePage } from "./pages/home/HomePage";
 import { NotFoundPage } from "./pages/404/NotFoundPage";
 import { TaskDetailsComponent } from "./pages/details/TaskDetails";
 import LoginPage from "./pages/login/LoginPage";
 import SignUpPage from "./pages/signup/SignUpPage";
+import { HomePageProvider } from "./pages/home/HomePage";
 
 function App(): JSX.Element {
   // If we need to refactor this structure we can use the useRoutes hoock
@@ -36,7 +37,7 @@ function App(): JSX.Element {
         {/* <!-- This compenent is responsible to render the main layout of the application and 
         render the respective pages here --> */}
         <Routes>
-          <Route path="/home" element={<HomePage />}>
+          <Route path="/home" element={<HomePageProvider />}>
             <Route path="tasks-list" element={<TaskLists />} />
             <Route path="details" element={<TaskDetailsComponent />} />
           </Route>

@@ -1,5 +1,5 @@
 export enum TaskStatus {
-  ALL = "ALL", // This status is for default
+  DEFAULT = "DEFAULT", // This status is for default
   COMPLETED = "COMPLETED", // This status show all completed tasks
   PENDING = "PENDING", // This status show pending tasks
   FAVORITE = "FAVORITE", // This status show all tasks with [favorite] status

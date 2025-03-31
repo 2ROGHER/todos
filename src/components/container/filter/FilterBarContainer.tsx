@@ -2,12 +2,15 @@ import React from "react";
 import { SearchBarContainer } from "../search/SearchBarContainer";
 import FilterBarComponent from "../../ui/fiter-bar/FilterBarComponent";
 import "./FilterBarContainer.scss";
+import { useHomeContext } from "../../../pages/home/HomeContext";
 
-function FilterBarContainer({ f, g }: { f: () => void; g: (e: any) => void }) {
+function FilterBarContainer({ f }: { f: () => void }) {
+  // 1. Use the custom hook [useHomeContet] to handle acctions here without pass props to father to children.
+  const { s, setS } = useHomeContext();
   return (
     <section className="filter-bar">
       <div className="filter-bar__content">
-        <FilterBarComponent g={g} />
+        <FilterBarComponent g={setS} />
         <SearchBarContainer f={f} />
       </div>
     </section>

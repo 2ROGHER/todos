@@ -23,7 +23,7 @@ export const taskReducer = (
         v4(),
         payload.title,
         payload.content,
-        TaskStatus.ALL, // This [status] is for default
+        TaskStatus.DEFAULT, // This [status] is for default
         new Date().getTime().toString(), // TODO("This [task] attribute should be to udpated letter")
         new Date().getTime().toString()
       );
