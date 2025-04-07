@@ -2,13 +2,11 @@ import React, { JSX } from "react";
 import "./Search.scss";
 
 export const SearchComponent = ({
-  t,
-  onSearch,
-  onHiddeSearchbar,
+  v,
+  onSetV,
 }: {
-  t: { search: string };
-  onSearch: (k: string, v: string) => void;
-  onHiddeSearchbar: () => void;
+  v: { search: string };
+  onSetV: (k: string, v: string) => void;
   // onSearch: <K extends keyof typeof t>(k: K, v: (typeof t)[K]) => void;
 }): JSX.Element => {
   // Need to add a local variable to store the value here.
@@ -44,9 +42,9 @@ export const SearchComponent = ({
         <input
           type="text"
           className="search-bar__input"
-          value={t?.search}
+          value={v.search}
           name="search"
-          onChange={(e) => onSearch(e.target.name, e.target.value)}
+          onChange={(e) => onSetV(e.target.name, e.target.value)}
           placeholder="Search for a task..."
         />
       </div>

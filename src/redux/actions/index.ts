@@ -40,37 +40,3 @@ export const udpateTaskAction = (task: Task): IAction<Task> => ({
   payload: task,
 });
 
-/**
- * This action creator is used to retrieve all task by the tasks list.
- * @returns { IAction []} All list of tasks.
- */
-
-export const setSearchTermAction = (t: string): IAction<string> => ({
-  type: SET_SEARCH_TERM,
-  payload: t,
-});
-
-export const searchTaskByTermValueAction = (t: string) => ({
-  type: SEARCH_TASK,
-  payload: t,
-});
-
-// export const setTaskStatusActions = (v: string) => ({
-//   type: SET_TASK_STATUS_FILTER,
-//   payload: v,
-// });
-
-// export const filterTasksByStatusAction = () => ({
-//   type: FILTER_TASKS_BY_STATUS,
-// });
-
-export const setSortValueAction = (v: string) => ({
-  type: SET_SORT_VALUE_FILTER,
-  payload: v,
-});
-
-export const sortTasksByValueAction = () => ({
-  type: SORT_TASKS_BY_VALUE,
-});
-
-

@@ -4,6 +4,10 @@ import Task from "../../../models/domain/task.model";
 import { TaskStatus } from "../../../enums/task-status.enum";
 import DropdownMenu from "../../utils/drop-down/DropdownMenu";
 import { useInput } from "../../../hooks";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
+import { IAction } from "../../../models/interfaces";
+import { removeTaskAction } from "../../../redux/actions";
 
 export const TaskComponent = ({
   _id,
@@ -38,6 +42,8 @@ export const TaskComponent = ({
 
   const { i, memoizedChangeV, _ } = useInput({});
 
+  const d = useDispatch<Dispatch<IAction<Task | any>>>();
+
   useEffect(() => {
     setUpdateTerm({ ...updatedTerm, _title, _content });
   }, []);
@@ -45,30 +51,32 @@ export const TaskComponent = ({
   return (
     <section className="task">
       <div className="task-header">
-        <div className="">
-          <button
-            title="btn-delete"
-            className="btn-delete"
-            onClick={() => onSetStatus(TaskStatus.DELETED, _id)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="24"
-              height="24"
-              color="tomato"
-              fill="none"
+        {_status !== TaskStatus.DELETED && (
+          <div className="">
+            <button
+              title="btn-delete"
+              className="btn-delete"
+              onClick={() => onSetStatus(TaskStatus.DELETED, _id)}
             >
-              <path
-                d="M18 6L12 12M12 12L6 18M12 12L18 18M12 12L6 6"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                color="tomato"
+                fill="none"
+              >
+                <path
+                  d="M18 6L12 12M12 12L6 18M12 12L18 18M12 12L6 6"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
       {isUdpdate.title ? (
         <div className="task__header">
@@ -125,7 +133,7 @@ export const TaskComponent = ({
         </div>
         <div className="task__actions">
           <div className="">
-            {_status === TaskStatus.DEFAULT && (
+            {_status === TaskStatus.PENDING && (
               <button
                 title="btn-toggle"
                 className="btn-favorites"
@@ -153,7 +161,7 @@ export const TaskComponent = ({
               <button
                 title="btn-toggle"
                 className="btn-favorites"
-                onClick={() => onSetStatus(TaskStatus.DEFAULT, _id)}
+                onClick={() => onSetStatus(TaskStatus.PENDING, _id)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

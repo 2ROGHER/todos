@@ -5,25 +5,26 @@ import { IAction } from "../../../models/interfaces/action.interface";
 import Task from "../../../models/domain/task.model";
 
 import { useSearch } from "../../../hooks/useSearch.hook";
+import { useInput } from "../../../hooks";
+import { useEffect } from "react";
+import { setSearchTermAction } from "../../../redux/actions/filters.actions";
 
 export const SearchBarContainer = ({ f }: { f: () => void }) => {
-  //TODO: use [useInput] custom Hook instaend.
-  // const [s, onChangeI] = useSearch<Record<string, any>>({ search: "" });
-  const [s, setS] = useSearch({ search: "" });
+  const { i, memoizedChangeV } = useInput({ search: "" });
+  const d = useDispatch<Dispatch<IAction<Task | any>>>();
 
-  const dispatch = useDispatch<Dispatch<IAction<string | Task>>>();
-  const state = useSelector((state: any) => state);
-
+  useEffect(()  => {
+    // 1. When any changes occur at [i] local state we need to update the [state] at filters reducer in searchTerm to search in real time.
+      d(setSearchTermAction(i.search));
+  }, [i, memoizedChangeV]);
   return (
     // <SearchComponent
     //   t={s}
     //   onSearch={(k, v) => onChangeI((prv) => ({ ...prv, [k]: v }))}
     // />
     <SearchComponent
-      t={s}
-      // onSearch={(k: keyof typeof s, v: (typeof s)[typeof k]) => setS(k, v)}
-      onSearch={setS}
-      onHiddeSearchbar={f}
+    v={i}
+     onSetV={memoizedChangeV}
     />
   );
 };

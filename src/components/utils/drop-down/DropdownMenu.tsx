@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./DropdownMenu.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { IAction } from "../../../models/interfaces";
 import Task from "../../../models/domain/task.model";
@@ -33,6 +33,8 @@ function DropdownMenu(
     </>
   )
 ) {
+  // 1. Add some own logic to handle certain actions
+  const checked = useSelector((state: any) => state.filters.filteredItems);
   
   return (
     <section className="dropdown-list">
@@ -40,6 +42,8 @@ function DropdownMenu(
         <ul className="dropdown-menu-list">
           {items
             ? items.map((i: any) => (
+                // Wether the element input is ['only'] we need to render the input with type='ratio'
+
                 <li className="dropdown-menu-item" key={i.key}>
                   {type == "only" ? (
                     <span>
@@ -57,7 +61,7 @@ function DropdownMenu(
                     <span>
                       <input
                         type="checkbox"
-                        // checked={i == TaskStatus.DEFAULT ? true : false}
+                        checked={checked.includes(i)} // Any component is checked if exists in the [filteredItems] array.
                         name="status"
                         value={i}
                         onChange={(e) => {

@@ -34,7 +34,7 @@ export const NavBar = ({
             <button
               className="btn__home"
               title="btn__home"
-              onClick={() => onSetFilter(TaskStatus.DEFAULT)}
+              onClick={() => window.alert("Getting all tasks")}
             >
               <span>
                 <svg

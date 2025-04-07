@@ -25,7 +25,7 @@ var initialState: TaskState = {
       v4() as string,
       "Default Task",
       "Default Content Task",
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -34,7 +34,7 @@ var initialState: TaskState = {
       "Default Task 2",
       "Default Content Task 2",
 
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -42,7 +42,7 @@ var initialState: TaskState = {
       v4(),
       "Default Task 3",
       "Default Content Task 3",
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -51,7 +51,7 @@ var initialState: TaskState = {
       "Default Task 4",
       "Default Content Task 4",
 
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -60,7 +60,7 @@ var initialState: TaskState = {
       "Default Task 5",
       "Default Content Task 5",
 
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -69,7 +69,7 @@ var initialState: TaskState = {
       "Default Task 6",
       "Default Content Task 6",
 
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -78,7 +78,7 @@ var initialState: TaskState = {
       "Default Task 7",
       "Default Content Task 7",
 
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -87,7 +87,7 @@ var initialState: TaskState = {
       "Default Task 8",
       "Default Content Task 8",
 
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -96,7 +96,7 @@ var initialState: TaskState = {
       "Default Task 9",
       "Default Content Task 9",
 
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -105,7 +105,7 @@ var initialState: TaskState = {
       "Default Task 10",
       "Default Content Task 10",
 
-      TaskStatus.DEFAULT,
+      TaskStatus.PENDING,
       new Date().getTime().toString(),
       new Date().getTime().toString()
     ),
@@ -127,7 +127,7 @@ export const tasksReducer = (
     // case REMOVE_TASK:
     //   return {
     //     ...state,
-    //     tasks: [...state.tasks.map((t: Task) => t.id !== payload)],
+    //     tasks: [...state.tasks.filter((t: Task) => t.id !== payload)],
     //   };
 
     // This option allow us to [update] a task by [id] by the list of tasks
@@ -140,28 +140,11 @@ export const tasksReducer = (
         }),
       };
 
-    // This case allows us to [search] a task by the [title and content] by the lists of tasks
-    // case SEARCH_TASK:
-    //   return {
-    //     ...state,
-    //     tasks: [
-    //       ...state.tasks.filter((t: Task) => taskReducer(t, { type, payload })),
-    //     ],
-    //   };
-
-    // This case allows us to [filter] the tasks by the [status] of the task
-    // case FILTER_TASKS_BY_STATUS:
-    //   console.log(payload);
-    //   return state.filter((t: Task) => t._status === payload);
 
     // This allow us to set the status of [task] at the list
     case SET_TASK_STATUS:
-      console.log("in tasks reducer", payload.id, payload.s);
-      // return [
-      //   ...state.map((t: Task) =>
-      //     t.id == payload.id ? { ...t, _status: payload.s } : t
-      //   ),
-      // ];
+      // TODO ("Here we need to improve only render the task status no the complete array with tasks")
+
       return {
         ...state,
         tasks: [
@@ -173,8 +156,8 @@ export const tasksReducer = (
     case SORT_TASKS_BY_VALUE:
       return;
 
-    // This case allows us to filter the task by [favorites] status.
 
+    // This case allows us to filter the task by [favorites] status.
 
     // If anything case is acomplished, return the state.
     default:

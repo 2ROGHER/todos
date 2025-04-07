@@ -16,7 +16,7 @@ function FilterBarComponent({ g }: { g: (e: any) => void }) {
   const d = useDispatch<Dispatch<IAction<Task | any>>>();
 
   // 2. [useInput] as local state to hold the (user input)
-  const { i, memoizedChangeV, _ } = useInput({});
+  const { i, memoizedChangeV } = useInput({});
 
   useEffect(() => {
     // 3. When any changes occur at [i] local state we need to update the [state s] at useHomeContext
@@ -28,7 +28,7 @@ function FilterBarComponent({ g }: { g: (e: any) => void }) {
       <div className="filterbar-box">
         <button title="filterbar-arrow__down" className="filterbar-arrow__down">
           <span className="status">status:</span>
-          <span className="select-item">{i.status}</span>
+          <span className="select-item">{!i.status ? "ALL" : i.status}</span>
           <span className="arrow-down">
             <svg
               width="24"

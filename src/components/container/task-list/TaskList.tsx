@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import Task from "../../../models/domain/task.model";
 import { IAction } from "../../../models/interfaces/action.interface";
-import {
-  udpateTaskAction,
-  removeTaskAction,
-} from "../../../redux/actions";
+import { udpateTaskAction, removeTaskAction } from "../../../redux/actions";
 import { TaskComponent } from "../../ui/task/TaskComponent";
 import { IState } from "../../../models/interfaces/state.interface";
 
@@ -54,6 +51,11 @@ export const TaskLists = (): JSX.Element => {
   const handleSetStatus = (s: string, id: string) => {
     d(addTaskStatusAction(s, id)); // {id: ID, status: DELETED}
   };
+
+  // const handleRemoveTask = (id: string) => {
+  //   d(addTaskStatusAction(TaskStatus.DELETED, id));
+  //   d(removeTaskAction(id));
+  // };
 
   return (
     <>

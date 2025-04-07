@@ -27,7 +27,7 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
   const [f, setF] = useState(true);
 
   // 1. Handle the filter state
-  const [s, setS] = useState({ status: "DEFAULT" });
+  const [s, setS] = useState({ status: "" });
 
   // 2. Crete local status to [store] all items task statues.
   const [filterStatus, setFilterStatus] = useState<{ status: string }[]>([]);
@@ -46,16 +46,12 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
 
     setFilterStatus((prev) => {
       // prev: [{status: "DELETED"}, {status: "COMPLETED"}]
-      if (s.status && !prev.some((item) => item.status === s.status)) {
+      if (s.status  && !prev.some((item) => item.status === s.status)) {
         return [...prev, { status: s.status }]; // return an array with the status information
       }
       return prev;
     });
-
-    // 3. We need to [dispatch] an action to [filter] tasks by the list.
-    // d(setFilterValueAction(s.status));
-
-    // 4. We need to [dispatch] an action to set [filters values] to reducer.
+    // 3. We need to [dispatch] an action to set [filters values] to reducer.
     d(setFiltersValuesArrayAction(s.status));
   }, [s]);
   return (

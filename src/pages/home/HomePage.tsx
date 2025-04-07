@@ -24,7 +24,6 @@ const HomePage = () => {
 
   // 3. We need to [dispatch] an action to [filter] tasks by the list.
 
-  console.log("changing at home", s);
 
   const handleSetFilter = (s: string) => {
     d(setFilterValueAction(s));
