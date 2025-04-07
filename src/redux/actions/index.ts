@@ -7,7 +7,7 @@ import { Action } from "redux";
 import Task from "../../models/domain/task.model";
 import { IAction } from "../../models/interfaces/action.interface";
 import {  CREATE_TASK, UPDATE_TASK } from "../action-types/task";
-import { REMOVE_TASK, GET_ALL_TASKS } from "../action-types/tasks";
+import { REMOVE_TASK } from "../action-types/tasks";
 import {
   FILTER_TASKS_BY_STATUS,
   SEARCH_TASK,
@@ -44,9 +44,6 @@ export const udpateTaskAction = (task: Task): IAction<Task> => ({
  * This action creator is used to retrieve all task by the tasks list.
  * @returns { IAction []} All list of tasks.
  */
-export const getAllTasksAction = () => ({
-  type: GET_ALL_TASKS,
-});
 
 export const setSearchTermAction = (t: string): IAction<string> => ({
   type: SET_SEARCH_TERM,

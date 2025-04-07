@@ -6,6 +6,7 @@ import { IAction } from "../../../models/interfaces";
 import Task from "../../../models/domain/task.model";
 import { useInput } from "../../../hooks";
 import { addTaskStatusAction } from "../../../redux/actions/task.actions";
+import { TaskStatus } from "../../../enums/task-status.enum";
 
 /**
  * This custom hook allows us to create a [dropdown menu] to select and filter tasks from the list items.
@@ -21,6 +22,7 @@ import { addTaskStatusAction } from "../../../redux/actions/task.actions";
  */
 function DropdownMenu(
   {
+    id="",
     items = [""], // [items] array of items to render at DOM
     type = "only", // type of menu to render. 'only' or 'multiple'
     onSetV = (k: string, v: any) => {} // [hold] the item selecteded
@@ -50,12 +52,12 @@ function DropdownMenu(
                         }}
                       />
                     </span>
-                  ) : 
+                  ) : (
                     // Wether the element input is ['multiple'] we need to render the input with type='checkbox'
-                  (
                     <span>
                       <input
                         type="checkbox"
+                        // checked={i == TaskStatus.DEFAULT ? true : false}
                         name="status"
                         value={i}
                         onChange={(e) => {

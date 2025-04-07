@@ -1,6 +1,7 @@
 import {
   SEARCH_TASK,
   SET_FILTER_VALUE,
+  SET_FILTERS_VALUES,
   SET_SORT_VALUE_FILTER,
   SET_TASK_STATUS,
 } from "../action-types/filters";
@@ -12,15 +13,16 @@ import { TaskStatus } from "../../enums/task-status.enum";
 import { FilterState } from "../../models/interfaces/filter-state.interface";
 import { IPayload } from "../../models/interfaces";
 
-const initialState: FilterState<string> = {
+const initialState: FilterState = {
   searchTerm: "",
   filterValue: "",
   sortBy: "",
+  filteredItems: [],
 };
 
 export const filtersReducer = (
   state = initialState,
-  { type, payload }: { type: string; payload: IPayload<string> }
+  { type, payload }: { type: string; payload: any }
 ) => {
   switch (type) {
     // Here it's responsability here is to set the (term value) to search the tasks at tasks list.
@@ -35,6 +37,14 @@ export const filtersReducer = (
 
     case SET_SORT_VALUE_FILTER:
       return { ...state, sortBy: payload };
+
+    case SET_FILTERS_VALUES:
+     return {
+       ...state,
+       filteredItems: state.filteredItems.includes(payload)
+         ? state.filteredItems.filter((item) => item !== payload)
+         : [...state.filteredItems, payload],
+     };
 
     default:
       return state;

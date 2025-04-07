@@ -153,7 +153,7 @@ export const TaskComponent = ({
               <button
                 title="btn-toggle"
                 className="btn-favorites"
-                onClick={() => onToggleSetStatus(TaskStatus.DEFAULT, _id)}
+                onClick={() => onSetStatus(TaskStatus.DEFAULT, _id)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

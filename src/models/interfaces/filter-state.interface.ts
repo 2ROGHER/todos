@@ -1,6 +1,6 @@
-export interface FilterState <T = string> {
-    searchTerm: T;
-    filterValue: T;
-    sortBy: T;
-
+export interface FilterState {
+    searchTerm: string;
+    filterValue: string;
+    sortBy: string;
+    filteredItems: string[],
 }

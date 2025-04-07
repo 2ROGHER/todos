@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { REMOVE_TASK, GET_ALL_TASKS } from "../action-types/tasks";
+import { REMOVE_TASK} from "../action-types/tasks";
 
 import { CREATE_TASK, SET_TASK_STATUS, UPDATE_TASK } from "../action-types/";
 import Task from "../../models/domain/task.model";
@@ -124,11 +124,11 @@ export const tasksReducer = (
       };
 
     // This options allows us to [remove] a task from the list of tasks
-    case REMOVE_TASK:
-      return {
-        ...state,
-        tasks: [...state.tasks.map((t: Task) => t.id !== payload)],
-      };
+    // case REMOVE_TASK:
+    //   return {
+    //     ...state,
+    //     tasks: [...state.tasks.map((t: Task) => t.id !== payload)],
+    //   };
 
     // This option allow us to [update] a task by [id] by the list of tasks
     case UPDATE_TASK:
@@ -141,13 +141,13 @@ export const tasksReducer = (
       };
 
     // This case allows us to [search] a task by the [title and content] by the lists of tasks
-    case SEARCH_TASK:
-      return {
-        ...state,
-        tasks: [
-          ...state.tasks.filter((t: Task) => taskReducer(t, { type, payload })),
-        ],
-      };
+    // case SEARCH_TASK:
+    //   return {
+    //     ...state,
+    //     tasks: [
+    //       ...state.tasks.filter((t: Task) => taskReducer(t, { type, payload })),
+    //     ],
+    //   };
 
     // This case allows us to [filter] the tasks by the [status] of the task
     // case FILTER_TASKS_BY_STATUS:
@@ -175,8 +175,6 @@ export const tasksReducer = (
 
     // This case allows us to filter the task by [favorites] status.
 
-    case GET_ALL_TASKS:
-      return state;
 
     // If anything case is acomplished, return the state.
     default:

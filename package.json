@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "webpack --mode development",
-    "start:dev": "concurrently \"webpack --mode development --watch\" \"live-server --port=8080 --host=localhost --entry-file=index.html\"",
+    "start:dev": "concurrently \"webpack --mode development --watch\" \"live-server --port=4300 --host=localhost --entry-file=index.html\"",
     "build:prod": "webpack --mode production"
   },
   "repository": {

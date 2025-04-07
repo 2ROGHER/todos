@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import { IAction } from "../models/interfaces/action.interface";
 import {
-  getAllTasksAction,
   searchTaskByTermValueAction,
 } from "../redux/actions";
 import Task from "../models/domain/task.model";
@@ -38,7 +37,7 @@ export const useSearch = <T extends Record<string, any>>(
     let { search } = i;
     let t = search.trim(); // We need to add this to improve the performace wheater user 
 
-    !t ? d(getAllTasksAction()) : d(searchTaskByTermValueAction(t));
+    // !t ? d(getAllTasksAction()) : d(searchTaskByTermValueAction(t));
   }, [i, d]);
 
   return [i,  memoizedChangeV] as const;

@@ -19,10 +19,10 @@ const SignUpContainer = (): JSX.Element => {
     password: "",
   });
 
-  const { l, addItem, getItem, removeItem, clear } = useLocalStorage(
-    "signup",
-    {}
-  ); // Initialize local storage with the [signup] values. [inicializar]
+  // const { l, addItem, getItem, removeItem, clear } = useLocalStorage(
+  //   "signup",
+  //   {}
+  // ); // Initialize local storage with the [signup] values. [inicializar]
 
   const nav = useNavigate();
 
@@ -35,7 +35,7 @@ const SignUpContainer = (): JSX.Element => {
     e.preventDefault();
     const u = { ...i, id: v4() };
     d(setSignUpAction(u)); // Dispatch the new [user]
-    addItem("user-".concat(i.name, "-", i.lastName).trim(), u); // Register the [user] at window.localStorage
+    //addItem("user-".concat(i.name, "-", i.lastName).trim(), u); // Register the [user] at window.localStorage
     reset();
     nav("/home");
 

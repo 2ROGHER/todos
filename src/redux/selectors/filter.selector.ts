@@ -31,11 +31,29 @@ export const selectedFilteredTasks = createSelector(
     // 3. Add filter as [searchTerm] to filter by search task
     // 4. compose all tasks to show a simple task list.
 
-    if(!filters.filterValue || filters.filterValue === "DEFAULT") {
+    if (!filters.filterValue && !tasks.length) return [];
+
+    if (filters.filteredItems.length > 0) {
+      console.log("filters.filteredItems: ", filters.filteredItems);
+
+      return tasks.filter((t: Task) =>
+        filters.filteredItems.some(f => t.status === f)
+      );
+    }
+
+    if (!filters.filterValue || filters.filterValue === "DEFAULT") {
       return tasks;
     }
 
+    // if (filters.filteredItems) {
+    //   console.log("filters.filteredItems: ", filters.filteredItems.join(""));
+    //   return tasks.filter((t: Task) =>
+    //     t.status.includes(filters.filteredItems.join(""))
+    //   );
+    // }
+
     
+
     return tasks.filter((t: Task) => t.status === filters.filterValue);
   }
 );

@@ -9,7 +9,11 @@ import { HomeContextProps } from "./home-context-props.interface";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import { IAction } from "../../models/interfaces";
-import { setFilterValueAction } from "../../redux/actions/filters.actions";
+import {
+  setFiltersValuesArrayAction,
+  setFilterValueAction,
+} from "../../redux/actions/filters.actions";
+import { TaskStatus } from "../../enums/task-status.enum";
 
 // 1. Create the context [HomeContext]
 const HomeContext = createContext<HomeContextProps | undefined>(undefined);
@@ -29,8 +33,7 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
   const [filterStatus, setFilterStatus] = useState<{ status: string }[]>([]);
 
   // 3. Create a dispatcher to [dipatch ] filter actions.
-  const d = useDispatch<Dispatch<IAction<String|any>>>();
-
+  const d = useDispatch<Dispatch<IAction<String | any>>>();
 
   const sayHello = () => console.log("Hello!");
 
@@ -39,20 +42,35 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   useEffect(() => {
-    setFilterStatus((prev) => { // prev: [{status: "DELETED"}, {status: "COMPLETED"}]
+    if (!s || !s.status ) return;
+
+    setFilterStatus((prev) => {
+      // prev: [{status: "DELETED"}, {status: "COMPLETED"}]
       if (s.status && !prev.some((item) => item.status === s.status)) {
-        return [...prev, { status: s.status }];
+        return [...prev, { status: s.status }]; // return an array with the status information
       }
       return prev;
     });
 
     // 3. We need to [dispatch] an action to [filter] tasks by the list.
-    d(setFilterValueAction(s.status));
+    // d(setFilterValueAction(s.status));
 
-  }, [s, setS]);
+    // 4. We need to [dispatch] an action to set [filters values] to reducer.
+    d(setFiltersValuesArrayAction(s.status));
+  }, [s]);
   return (
     <HomeContext.Provider
-      value={{ v, sayHello, toggleFormVisibility, f, setF, s, setS, filterStatus, setFilterStatus}}
+      value={{
+        v,
+        sayHello,
+        toggleFormVisibility,
+        f,
+        setF,
+        s,
+        setS,
+        filterStatus,
+        setFilterStatus,
+      }}
     >
       {children}
     </HomeContext.Provider>
