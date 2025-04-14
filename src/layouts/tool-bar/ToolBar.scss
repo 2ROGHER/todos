@@ -1,0 +1,13 @@
+.toolbar-layout {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 84px;
+
+    .settings {
+        display: flex;
+        align-items: center;
+
+    }
+}

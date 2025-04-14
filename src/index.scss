@@ -3,6 +3,8 @@
 * for the application.
 */
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Saira+Extra+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./styles/mixins/auth";
 
 // Base fonts families
 $base-font-family-inter: "Inter";
@@ -11,19 +13,46 @@ $base-font-family-serif: serif;
 $base-font-family-code: monospace;
 $base-font-family-poppins: "Poppins";
 $base-font-family-manrope: "Manrope";
+$base-font-family-quicksand: "Quicksand";
 
+// Base font sizes
+$base-h1-size: calc(61px/16); 
+$base-h2-size: calc(49px/16);
+$base-h3-size: calc(40px/16);
+$base-h4-size: calc(31px/16);
+$base-h5-size: calc(25px/16);
+$base-h6-size: calc(20px/16);
+$base-p-size: 1rem;
+$base-s-size: calc(13px/16);
 $base-font-size: 1rem;
 $base-font-height: 1.5;
 
 $base-font-family: $base-font-family-inter;
 
 // Base colors
-$base-color-app: #000000;
-$base-color-text: #fffdfd;
-$base-border-color: #1f1f1f;
-$base-bg-color: #111111;
-$base-input-color: #757575;
+$base-color-app: #f9f9f9;
+$base-color-text: #222222;
 
+
+// base-colors
+$base-primary: #D8EDFF ;
+$base-primary-20: #BAE0FF;
+$base-primary-30: #8BCFFF;
+$base-primary-40: #54B3FF;
+$base-border-color: #CED0D6;
+
+$base-bg-1: #edeff1;
+
+// Brand colors
+$base-color-i: #040514;
+$base-color-1: #8598ab;
+$base-color-2: #d7e5eb;
+$base-color-3: #c0d8df;
+$base-color-4: #e2eef2;
+$base-color-5: #e2eef2;
+$base-color-6: #9dacb9;
+$base-color-7: #f0f4f6;
+$base-auth-bg-color: #040514;
 
 // Base sizes
 $base-padding-small: 16px;
@@ -33,7 +62,7 @@ $base-padding-medium: 24px;
 $base-box-border: 4px;
 
 // Base
-* {
+*::after, *::before, * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -43,11 +72,19 @@ body {
     position: relative;
     width: 100%; // This is the way to set the completly screen.
     height: 100vh;
-    font-family: $base-font-family-poppins, $base-font-family-inter, $base-font-family-serif, $base-font-family-sans;
+    font-family: $base-font-family;
     background: $base-color-app;
-    color: #fff;
-   
+    color: $base-color-text;
 }
 
+a {
+    text-decoration: none;
+}
 
+ul {
+    padding-inline-start: 0;
+}
 
+li {
+    list-style-type: none;
+}

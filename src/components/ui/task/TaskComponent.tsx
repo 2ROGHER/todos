@@ -1,5 +1,5 @@
 import React, { JSX, useEffect, useState } from "react";
-import "./Task.scss";
+import  "./Task.scss";
 import Task from "../../../models/domain/task.model";
 import { TaskStatus } from "../../../enums/task-status.enum";
 import DropdownMenu from "../../utils/drop-down/DropdownMenu";

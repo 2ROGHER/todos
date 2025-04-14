@@ -152,7 +152,7 @@ export const NavBar = ({
             </button>
           </li>
           <li className="nav-bar-menu__item">
-            <button className="btn__account">
+            <button className="btn__account" title="btn__account">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -183,7 +183,7 @@ export const NavBar = ({
       <div className="settings-menu">
         <ul className="settings-menu">
           <li className="settings-item">
-            <button className="btn__menu">
+            <button className="btn__menu" title="btn__menu">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +218,7 @@ export const NavBar = ({
             </button>
           </li>
           <li className="settings-item">
-            <button className="btn__settings">
+            <button className="btn__settings" title="btn__settings">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

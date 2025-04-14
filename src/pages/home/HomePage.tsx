@@ -1,18 +1,20 @@
 import React, { useCallback, useEffect, useState, createContext } from "react";
 import { NavBar } from "../../layouts/nav-bar/Navbar";
-import { SearchBarContainer } from "../../components/container/search/SearchBarContainer";
-import { CreateTaskFormContainer } from "../../forms/container/create-todo/CreateTaskFormContainer";
-import { TaskLists } from "../../components/container/task-list/TaskList";
+import { SearchBarContainer } from "../../components/ui/task/SearchBarContainer";
+import { CreateTaskFormContainer } from "../../forms/create-form/CreateTaskFormContainer";
+import { TaskLists } from "../../components/ui/task/task-list/TaskList";
 import "./HomePage.scss";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import { IAction } from "../../models/interfaces";
 import Task from "../../models/domain/task.model";
-import FilterBarContainer from "../../components/container/filter/FilterBarContainer";
+import FilterBarContainer from "../../components/ui/fiter-bar/FilterBarContainer";
 import { setFilterValueAction } from "../../redux/actions/filters.actions";
 import { PillComponent } from "../../components/utils/pill/PillComponent";
 import { useInput } from "../../hooks";
 import { HomeProvider, useHomeContext } from "./HomeContext";
+import { PaginationContainer } from "../../components/ui/pagination/PaginationContainer";
+import ToolBarLayout from "../../layouts/tool-bar/ToolBarLayout";
 
 const HomePage = () => {
   // 1. Use the [HomeContext]
@@ -36,12 +38,8 @@ const HomePage = () => {
     <>
       <main className="App">
         {/* This section is used to render the navigation bar */}
-        <section className="side-bar">
-          <NavBar
-            active={f}
-            onSetActiveForm={setF}
-            onSetFilter={handleSetFilter}
-          />
+        <section className="tool-bar">
+          <ToolBarLayout /> 
         </section>
 
         <aside className="main">
@@ -62,6 +60,7 @@ const HomePage = () => {
 
           <section className="main-content">
             <TaskLists />
+            <PaginationContainer />
           </section>
         </aside>
       </main>

@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { REMOVE_TASK} from "../action-types/tasks";
+import { REMOVE_TASK, SET_FETCHED_DATA_TO_TASKS} from "../action-types/tasks";
 
 import { CREATE_TASK, SET_TASK_STATUS, UPDATE_TASK } from "../action-types/";
 import Task from "../../models/domain/task.model";
@@ -116,6 +116,12 @@ export const tasksReducer = (
   { type, payload }: { type: string; payload: any }
 ): Task[] | any => {
   switch (type) {
+
+    case SET_FETCHED_DATA_TO_TASKS:
+      return {
+        ...state,
+        tasks: payload,
+      }
     case CREATE_TASK:
       // This method is reused the reducer [task] to create a new Task and add this Task to array list.
       return {

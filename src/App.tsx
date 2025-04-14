@@ -5,9 +5,8 @@
 import React, { JSX } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import "./App.scss";
 // import { CreateTodoContainer } from "./forms/container/create-todo/CreateTodoContainer";
-import { TaskLists } from "./components/container/task-list/TaskList";
+import { TaskLists } from "./components/ui/task/task-list/TaskList";
 
 import { HashRouter as Router, useRoutes } from "react-router";
 import { Routes, Route } from "react-router";

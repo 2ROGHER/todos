@@ -1,0 +1,58 @@
+@import "../../../index.scss";
+
+.tools-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 2rem 0 0;
+
+    div span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    div {
+        padding: 4px;
+        cursor: pointer;
+    }
+
+    .toggle-view {
+        display: inherit;
+        border: 1px solid $base-border-color;
+        align-items: center;
+        padding: 4px;
+        gap: 4px;
+        border-radius: 100px 100px;
+    }
+
+    
+
+    .selected {
+        background: $base-primary;
+        border-radius: 50%;
+        padding: 0.5rem;
+    }
+
+}
+
+// .separator {
+//     position: absolute;
+//     right: -2rem;
+//     width: 1px;
+//     height: 100%;
+//     background: $base-primary;
+
+// }
+
+    .tools-container::after {
+        position: absolute;
+        content: "";
+        width: 2rem;;
+        height: 100%;
+        width: .2rem;
+        border-radius: 8px;
+        right: 0;
+        margin: -2rem;
+        background-color: $base-border-color;
+    }

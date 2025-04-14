@@ -1,0 +1,12 @@
+
+@mixin auth-form() {
+    // 1. the form color has the border wiht 1px of border and bgcolor static
+    border: 1px solid $base-border-color;
+    background-color: $base-auth-bg-color;
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow: hidden;
+    width: 24rem;
+
+    // TODO("Add any animation letter")
+}

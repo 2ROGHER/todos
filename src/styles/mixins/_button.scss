@@ -1,0 +1,24 @@
+@mixin default-button() {
+    border: 1px solid $base-color-text;
+    padding: 10px 32px;
+    color: $base-color-text;
+    font-family: $base-font-family-inter;
+    background: none;
+    font-size: 16px;
+    text-transform: capitalize;
+    border-radius: 4px;
+
+
+}
+
+@mixin disabled-button () {
+    
+}
+
+@mixin success-button() {
+
+}
+
+@mixin failed-button() {
+
+}

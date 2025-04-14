@@ -1,0 +1,64 @@
+@import "../../../../index.scss";
+
+@import "../../../../styles/mixins/auth";
+@import "../../../../styles/mixins/button";
+@import "../../../../styles/mixins/input";
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include auth-form();
+    .login-title {
+        margin-bottom: 1rem;
+    }
+    fieldset {
+        border: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    fieldset div {
+        width: 100%;
+    }
+    fieldset div input {
+        width: 100%;
+        @include input-auth-form();
+    }
+
+    .login {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem 0;
+
+        button {
+            @include default-button();
+        }
+    }
+
+    .line-break {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        margin: 1rem 0;
+    }
+
+    .line-break::before, .line-break::after {
+        content: "";
+        flex: 1;
+        background: $base-border-color;
+        height: 2px;
+
+    }
+}

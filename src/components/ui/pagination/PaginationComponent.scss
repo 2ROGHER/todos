@@ -1,0 +1,21 @@
+.pagination-component {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.pagination-component ul {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+    li {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #8598ab;
+        cursor: pointer;
+        
+    }
+}
