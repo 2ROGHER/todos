@@ -13,43 +13,43 @@ import axios, { AxiosError, AxiosResponse } from "axios";
  *
  * @returns Object with data, loading, error, and a refetch function.
  */
-export const useFetch = <T>(endpoint: string, page: number, size: number) => {
-  const [data, setData] = useState<T[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+// export const useFetch = <T>(endpoint: string, page: number, size: number) => {
+//   const [data, setData] = useState<T[]>([]);
+//   const [loading, setLoading] = useState<boolean>(false);
+//   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response: AxiosResponse<T[]> = await axios.get(endpoint, {
-        params: { page, size },
-      });
-      setData(response.data); // set the data at the state by the response data
-    } catch (err) {
-      const axiosError = err as AxiosError;
-      console.error("Fetch error:", axiosError);
+//   const fetchData = useCallback(async () => {
+//     setLoading(true);
+//     setError(null);
+//     try {
+//       const response: AxiosResponse<T[]> = await axios.get(endpoint, {
+//         params: { page, size },
+//       });
+//       setData(response.data); // set the data at the state by the response data
+//     } catch (err) {
+//       const axiosError = err as AxiosError;
+//       console.error("Fetch error:", axiosError);
 
-      if (axiosError.response) {
-        // Server responded with a status other than 2xx
-        setError(
-          `Error ${axiosError.response.status}: ${axiosError.response.statusText}`
-        );
-      } else if (axiosError.request) {
-        // No response was received
-        setError("No response from server. Please check your network.");
-      } else {
-        // Other errors
-        setError("An unexpected error occurred.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  }, [endpoint, page, size]);
+//       if (axiosError.response) {
+//         // Server responded with a status other than 2xx
+//         setError(
+//           `Error ${axiosError.response.status}: ${axiosError.response.statusText}`
+//         );
+//       } else if (axiosError.request) {
+//         // No response was received
+//         setError("No response from server. Please check your network.");
+//       } else {
+//         // Other errors
+//         setError("An unexpected error occurred.");
+//       }
+//     } finally {
+//       setLoading(false);
+//     }
+//   }, [endpoint, page, size]);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+//   useEffect(() => {
+//     fetchData();
+//   }, [fetchData]);
 
-  return { data, loading, error, refetch: fetchData };
-};
+//   return { data, loading, error, refetch: fetchData };
+// };

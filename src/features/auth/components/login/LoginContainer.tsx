@@ -10,7 +10,7 @@ function LoginContainer() {
     username: "",
     password: "",
   });
-  const { validator, l } = useAuthValidator();
+  // const { validator, l } = useAuthValidator();
 
   console.log(i);
 
@@ -19,7 +19,7 @@ function LoginContainer() {
     // TODO: implement the function validation here.
     try {
       // implement the validation
-      validator({ ...i }, '/home');
+      // validator({ ...i }, '/home');
     } catch (error) {
       console.log(`Error during the validation process: ${error}`);
     }

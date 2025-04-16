@@ -33,7 +33,7 @@ export const CreateTaskFormContainer = ({
           v4(),
           i.title,
           i.content,
-          TaskStatus.DEFAULT,
+          TaskStatus.PENDING,
           new Date().toString(),
           new Date().toString()
         )

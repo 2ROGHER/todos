@@ -4,7 +4,7 @@ import { NavBar } from "../../layouts/nav-bar/Navbar";
 export const TaskDetailsComponent = () => {
     return (
         <div>
-            <NavBar />
+            {/* <NavBar /> */}
             <h1 className="title">Task Details</h1>
         </div>
     );

@@ -130,7 +130,7 @@ export const NavBar = ({
             <button
               title="btn__fav"
               className="btn__fav"
-              onClick={() => onSetFilter(TaskStatus.FAVORITE)}
+              onClick={() => onSetFilter(TaskStatus.PENDING)}
             >
               <span>
                 <svg

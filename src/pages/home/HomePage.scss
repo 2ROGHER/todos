@@ -1,10 +1,46 @@
 @import "../../index.scss";
 
-.App { 
+.App {
     // background: #999;
+    color: $base-color-text;
 
     .tool-bar {
         // background: blue;
-        
+    }
+
+    .app-greeting {
+        color: inherit;
+        position: relative;
+        padding: 1rem $base-app-inner-padding;
+        h1.app-title {
+            font-family: $base-font-family-poppins;
+            font-weight: 650;
+            font-size: $base-h1-size;
+            letter-spacing: -0.2rem;
+        }
+
+        .date {
+            letter-spacing: -0.1rem;
+            font-family: $base-font-family-poppins;
+            font-size: $base-h4-size;
+            font-weight: 550;
+            text-transform: capitalize;
+        }
+    }
+    .main-task-content {
+       position: relative;
+       display: grid;
+       grid-template-columns: 1fr 1fr 1fr 1fr; // 4 standart columns
+       gap: 16px;
+       // justify-items: center
+       // align-items: center
+       .stage-1 {
+
+            .create-task-btn {
+                
+            }
+       }
+
+       
     }
 }

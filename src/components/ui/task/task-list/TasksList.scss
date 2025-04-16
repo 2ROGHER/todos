@@ -1,19 +1,13 @@
-.tasks-list h1 {
-    font-size: 32px;
-    text-align: center;
-}
+ul.tasks-list {
+        position: relative;
 
-.tasks-list__content ul.tasks-list {
-    position: relative;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-auto-flow: dense;
-    gap: 16px;
-    padding: 4.5rem;
-    justify-items: center;
-    align-items: center;
-}
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        // grid-auto-flow: dense;
+        gap: 1rem; // standar separation
+        justify-items: center;
+        align-items: center;
+    }
 
 /* TODO ('implemente media queries here to show in other screens by now, we display the [tasks] in 
         four columns.

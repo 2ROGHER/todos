@@ -13,7 +13,7 @@ import { TaskStatus } from "../../../../enums/task-status.enum";
 import { selectedFilteredTasks } from "../../../../redux/selectors/filter.selector";
 import { setFilterValueAction } from "../../../../redux/actions/filters.actions";
 
-export const TaskLists = (): JSX.Element => {
+export const TaskLists = ({ status = TaskStatus.PENDING}): JSX.Element => {
   const d = useDispatch<Dispatch<IAction<Task | string>>>();
 
   // We need to get all [Tasks] when the component is rendered.
@@ -33,7 +33,7 @@ export const TaskLists = (): JSX.Element => {
    * @param id Task ID
    */
   const handleUpdateTask = (task: Task) => {
-    d(udpateTaskAction(task));
+    // d(udpateTaskAction(task));
   };
 
   /**
@@ -41,7 +41,7 @@ export const TaskLists = (): JSX.Element => {
    * @param id The ID of the task to mark completed or not.
    * @param task The task
    */
-  const handleCompletedTask = (id: string, task: Task) => {};
+  const handleCompletedTask = (id: string, task: Task) => { };
 
   /**
    * This method is used to set the [status] of each task as [favorites]
@@ -49,7 +49,7 @@ export const TaskLists = (): JSX.Element => {
    */
 
   const handleSetStatus = (s: string, id: string) => {
-    d(addTaskStatusAction(s, id)); // {id: ID, status: DELETED}
+    // d(addTaskStatusAction(s, id)); // {id: ID, status: DELETED}
   };
 
   // const handleRemoveTask = (id: string) => {
@@ -58,33 +58,49 @@ export const TaskLists = (): JSX.Element => {
   // };
 
   return (
-    <>
-      <div className="tasks-list">
-        <h1>Task Lists</h1>
-        <div className="tasks-list__content">
-          <ul className="tasks-list">
-            {todos ? (
-              todos.map((t: Task) => (
-                <li
-                  key={t.id}
-                  className="taks-list__item"
-                  style={{ listStyleType: "none" }}
-                >
-                  <TaskComponent
-                    {...t}
-                    // onRemove={handleRemoveTask}
-                    // onCompleted={() => console.log("completed")}
-                    onUpdate={handleUpdateTask}
-                    onSetStatus={handleSetStatus}
-                  />
-                </li>
-              ))
-            ) : (
-              <h3>Retreiving all task to DB</h3>
-            )}
-          </ul>
-        </div>
-      </div>
-    </>
+    <div className="tasks-list__content">
+      <ul className="tasks-list">
+        {/* {todos ? (
+          todos.map((t: Task) => t.status == TaskStatus.PENDING ?  (
+            <li
+              key={t.id}
+              className="taks-list__item"
+              style={{ listStyleType: "none" }}
+            >
+              <TaskComponent
+                {...t}
+                // onRemove={handleRemoveTask}
+                // onCompleted={() => console.log("completed")}
+                onUpdate={handleUpdateTask}
+                onSetStatus={handleSetStatus}
+              />
+            </li>
+          ): )
+        ) : (
+          <h3>Retreiving all task to DB</h3>
+        )} */}
+
+
+        {
+          todos && (
+            todos.filter((t: Task) => t.status === status)
+            .map((t: Task, i) => (
+              <li key={i}>
+                <TaskComponent
+                  _id={t.id}
+                  _title={t.title}
+                  _content={t.content}
+                  _status={t.status}
+                  _createdAt={t.createdAt}
+                  _updatedAt={t.updatedAt}
+                  onUpdate={handleUpdateTask}
+                  onSetStatus={handleSetStatus}
+                />
+              </li>
+            ))
+          )
+        }
+      </ul>
+    </div>
   );
 };

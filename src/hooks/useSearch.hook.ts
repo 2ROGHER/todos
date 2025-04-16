@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import { IAction } from "../models/interfaces/action.interface";
-import {
-  searchTaskByTermValueAction,
-} from "../redux/actions";
+// import {
+//   searchTaskByTermValueAction,
+// } from "../redux/actions";
 import Task from "../models/domain/task.model";
 import { useInput } from "./useInput.hook";
 /**
@@ -21,7 +21,7 @@ export const useSearch = <T extends Record<string, any>>(
   // [T, Function] maybe we can return a [valu, function]
 //   const [t, setT] = useState<T>(s);
   const d = useDispatch<Dispatch<IAction<string | Task>>>();
-  const { i, memoizedChangeV, _} = useInput(s);
+  const { i, memoizedChangeV } = useInput(s);
 
 //   const onChangeI = useCallback(<K extends keyof T>(k: K, v: T[K]) => {
 //     // {k: key, v: T[K] <> [k]: v}

@@ -81,6 +81,6 @@ export const selectedFilteredTasks = createSelector(
     // }
 
     // 4. If there is no filter value, we need to return all tasks to view.
-    return filteredTasks.filter((t: Task) => t.status !== "DELETED");
+    return filteredTasks.filter((t: Task) => t.status !== "PENDING");
   }
 );

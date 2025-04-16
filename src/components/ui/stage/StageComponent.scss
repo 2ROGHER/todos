@@ -1,0 +1,20 @@
+@import "../../../index.scss";
+
+.stage {
+    position: relative;
+    background: #fff;
+    border: 1px solid $base-border-color;
+    padding: calc(8/16) + rem  1rem;
+    .stage-title {
+        font-family: $base-font-family-quicksand;
+        color: #222;
+        text-transform: uppercase;
+    }
+
+    .stage-items {
+        width: 36px;
+        height: 20px;
+        color: #fffafa;
+        border-radius: 50px 50px;
+    }
+}

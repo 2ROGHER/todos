@@ -5,6 +5,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
     margin: 0 0 0 2rem; //base margin
     .perfil {
         position: relative;
@@ -31,4 +33,23 @@
         display: flex;
         flex-direction: column;
     }
+
+    // name and username styles
+    .name {
+        font-family: $base-font-family-poppins;
+        font-weight: 500;
+        text-transform: capitalize;
+        font-size: $base-p-size;
+    }
+
+    .user {
+        font-weight: 350;
+        font-size: 14px
+    }
+}
+
+.user-details:hover {
+    background: $base-hover-color;
+    border-radius: 4px;
+    transition: all ease .5s;
 }
